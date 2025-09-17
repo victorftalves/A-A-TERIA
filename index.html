@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mister Açaíteria - O Açaí Feito Para Você!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .yellow-accent {
+            background-color: #ffd700;
+        }
+    </style>
+</head>
+<body class="bg-[#5D007C] text-white">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-[#4a0063] shadow-lg py-4 px-6 fixed w-full z-50">
+            <nav class="container mx-auto flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <img src="https://placehold.co/40x40/ffffff/000000?text=A" alt="Logo" class="rounded-full">
+                    <span class="text-2xl font-bold">Mister Açaíteria</span>
+                </div>
+                
+                <!-- Menu de Navegação -->
+                <ul class="hidden md:flex space-x-8 text-lg">
+                    <li><a href="#" class="hover:text-yellow-300 transition-colors">Home</a></li>
+                    <li><a href="#" class="hover:text-yellow-300 transition-colors">Produtos</a></li>
+                    <li><a href="#" class="hover:text-yellow-300 transition-colors">Galeria</a></li>
+                    <li><a href="#" class="hover:text-yellow-300 transition-colors">Contato</a></li>
+                </ul>
+                
+                <!-- Botão de Login (Opcional) -->
+                <a href="#" class="hidden md:block yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-2 px-6 rounded-full transition-colors">Login</a>
+                
+                <!-- Mobile Menu Icon -->
+                <button id="menu-btn" class="md:hidden focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </nav>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 text-center">
+                <a href="#" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Home</a>
+                <a href="#" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Produtos</a>
+                <a href="#" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Galeria</a>
+                <a href="#" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Contato</a>
+                <a href="#" class="block py-2 text-lg yellow-accent hover:bg-yellow-500 text-[#4a0063] rounded-full mt-4">Login</a>
+            </div>
+        </header>
+
+        <!-- Main Content Section -->
+        <main class="flex-grow pt-24 bg-[#5D007C]">
+            <!-- Hero Section -->
+            <section class="container mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between min-h-screen-minus-header">
+                <!-- Text Content -->
+                <div class="text-center md:text-left md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-4 text-[#ffd700]">
+                        <span class="block">#FEITO POR VOCÊ</span>
+                        <span class="block">#FEITO PRA VOCÊ</span>
+                    </h1>
+                    <p class="text-lg md:text-xl mb-6 text-yellow-50">
+                        A liberdade de escolha está nas suas mãos. Você escolhe.
+                    </p>
+                    <a href="#" class="yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-3 px-8 rounded-full shadow-lg transition-colors">
+                        Conheça nossos produtos
+                    </a>
+                </div>
+                
+                <!-- Image Container -->
+                <div class="relative w-full md:w-1/2 flex justify-center md:justify-end">
+                    <img src="https://placehold.co/600x400/8B5CF6/000000?text=A%C3%A7a%C3%AD+delicioso" alt="Açaí Delicioso" class="w-full max-w-lg rounded-2xl shadow-xl transform hover:scale-105 transition-transform duration-300">
+                </div>
+            </section>
+            
+            <!-- Features Section (O que nos torna únicos?) -->
+            <section class="container mx-auto px-6 py-12 bg-[#4a0063] rounded-t-3xl mt-12 shadow-inner">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-yellow-300">O que nos torna únicos?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg">
+                        <span class="text-2xl font-bold text-[#4a0063]">Qualidade Premium</span>
+                        <p class="mt-2 text-[#5D007C]">Usamos apenas açaí de alta qualidade, garantindo o sabor e a pureza.</p>
+                    </div>
+                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg">
+                        <span class="text-2xl font-bold text-[#4a0063]">Sabores Exclusivos</span>
+                        <p class="mt-2 text-[#5D007C]">Nossas receitas e combinações são únicas e pensadas para você.</p>
+                    </div>
+                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg">
+                        <span class="text-2xl font-bold text-[#4a0063]">Ambiente Agradável</span>
+                        <p class="mt-2 text-[#5D007C]">Um espaço perfeito para relaxar, trabalhar ou encontrar os amigos.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Menu Section (Cardápio) -->
+            <section class="container mx-auto px-6 py-12 bg-[#5D007C] text-white">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 uppercase text-[#ffd700]">Cardápio</h2>
+                
+                <!-- Menu Items - Sizes and Prices -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <!-- Mini -->
+                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                        <h3 class="text-3xl font-bold text-yellow-300">Mini</h3>
+                        <p class="text-lg mt-1">330ml</p>
+                        <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 13,99</p>
+                    </div>
+                    <!-- Médio -->
+                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                        <h3 class="text-3xl font-bold text-yellow-300">Médio</h3>
+                        <p class="text-lg mt-1">400ml (+3 Acompanhamentos)</p>
+                        <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 16,00</p>
+                    </div>
+                    <!-- Grande -->
+                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                        <h3 class="text-3xl font-bold text-yellow-300">Grande</h3>
+                        <p class="text-lg mt-1">550ml (+3 Acompanhamentos)</p>
+                        <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 21,99</p>
+                    </div>
+                    <!-- Gigante -->
+                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                        <h3 class="text-3xl font-bold text-yellow-300">Gigante</h3>
+                        <p class="text-lg mt-1">770ml (+4 Acompanhamentos)</p>
+                        <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 24,99</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Order Section (with form for WhatsApp) -->
+            <section id="order-section" class="container mx-auto px-6 py-12 bg-[#4a0063] rounded-t-3xl mt-12 shadow-inner">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 uppercase text-[#ffd700]">Faça seu Pedido</h2>
+                <div class="max-w-xl mx-auto p-8 bg-[#5D007C] rounded-2xl shadow-xl">
+                    <form id="order-form">
+                        <!-- Nome -->
+                        <div class="mb-4">
+                            <label for="name" class="block text-2xl font-bold mb-2">Seu Nome:</label>
+                            <input type="text" id="name" name="name" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" placeholder="Seu nome completo" required>
+                        </div>
+                        
+                        <!-- Telefone -->
+                        <div class="mb-4">
+                            <label for="phone" class="block text-2xl font-bold mb-2">Seu Telefone:</label>
+                            <input type="tel" id="phone" name="phone" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" placeholder="(99) 99999-9999" required>
+                        </div>
+                        
+                        <!-- Endereço -->
+                        <div class="mb-6">
+                            <label for="address" class="block text-2xl font-bold mb-2">Seu Endereço:</label>
+                            <textarea id="address" name="address" rows="3" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" placeholder="Rua, número, bairro, complemento" required></textarea>
+                        </div>
+
+                        <!-- Tamanho -->
+                        <div class="mb-6">
+                            <label for="size" class="block text-2xl font-bold mb-2">Selecione o Tamanho:</label>
+                            <select id="size" name="size" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" required>
+                                <option value="" disabled selected>Escolha uma opção</option>
+                                <option value="Mini">Mini (330ml) - R$ 13,99</option>
+                                <option value="Médio">Médio (400ml) - R$ 16,00</option>
+                                <option value="Grande">Grande (550ml) - R$ 21,99</option>
+                                <option value="Gigante">Gigante (770ml) - R$ 24,99</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Acompanhamentos -->
+                        <div class="mb-6">
+                            <label class="block text-2xl font-bold mb-4">Escolha os Acompanhamentos:</label>
+                            <p id="topping-limit-info" class="text-sm italic text-yellow-200 mb-2">Selecione até 3 acompanhamentos.</p>
+                            <div class="grid grid-cols-2 gap-2 text-sm md:text-base">
+                                <!-- Lista de acompanhamentos -->
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Avelã" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Avelã</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Amendoim com chocolate" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Amendoim com chocolate</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Amendoim granulado" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Amendoim granulado</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Choco ball" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Choco ball</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Confeito colorido" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Confeito colorido</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Flocos de arroz" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Flocos de arroz</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Farinha de castanha de Caju" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Farinha de castanha de Caju</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Farinha Láctea" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Farinha Láctea</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Granola" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Granola</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Granulado Chocolate" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Granulado Chocolate</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Leite" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Leite</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Ovomaltine" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Ovomaltine</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Paçoca" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Paçoca</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Jujuba" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Jujuba</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="KitKat" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>KitKat</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="M&M" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>M&M</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Negresco" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Negresco</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Sucrilhos" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Sucrilhos</span></label>
+                            </div>
+                        </div>
+
+                        <!-- Botão de Pedido -->
+                        <div class="text-center">
+                            <button type="submit" class="yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-3 px-8 rounded-full shadow-lg transition-colors">
+                                Fazer Pedido no WhatsApp
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Message Box -->
+                    <div id="message-box" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4">
+                        <div class="bg-white p-6 rounded-lg shadow-xl text-center text-gray-800">
+                            <h3 class="text-xl font-bold mb-4">Atenção</h3>
+                            <p id="message-content" class="mb-4"></p>
+                            <button id="close-message" class="bg-purple-600 text-white py-2 px-4 rounded-full hover:bg-purple-700 transition-colors">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment and Delivery Info -->
+                <div class="mt-12 text-center">
+                    <h3 class="text-3xl font-bold uppercase text-yellow-300 mb-6">Informações Importantes</h3>
+                    <div class="max-w-xl mx-auto">
+                        <div class="bg-white bg-opacity-10 p-6 rounded-xl shadow-lg mb-4">
+                            <h4 class="text-xl font-bold mb-2 text-yellow-200">Formas de Pagamento</h4>
+                            <p class="text-lg">Cartão de Crédito e Débito, Pix e Dinheiro.</p>
+                        </div>
+                        <div class="bg-white bg-opacity-10 p-6 rounded-xl shadow-lg">
+                            <h4 class="text-xl font-bold mb-2 text-yellow-200">Taxa de Entrega</h4>
+                            <p class="text-lg">Taxa de R$6 a R$12. Consulte seu bairro no WhatsApp para saber o valor exato.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Find a Store Section (updated with addresses) -->
+            <section class="bg-[#4a0063] text-white py-16 px-6">
+                <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+                    <!-- Text Content -->
+                    <div class="text-center md:text-right md:w-1/2 mb-8 md:mb-0">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-4">Nossas Lojas</h2>
+                        <p class="text-lg md:text-xl mb-6 text-yellow-100">
+                            Visite uma de nossas unidades e desfrute do nosso açaí.
+                        </p>
+                        <div class="text-left md:text-right">
+                            <div class="mb-4">
+                                <h3 class="text-2xl font-bold text-yellow-300">Unidade 1</h3>
+                                <p class="text-lg">AV. JOAQUIM PEREIRA DE QUEIROZ, PRAÇA BAMBULUAR, BEGOZÃO BENEVIDES</p>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-yellow-300">Unidade 2</h3>
+                                <p class="text-lg">RUA PINTO BRAGA, EM FRENTE AO MINI SHOPPING, CENTRO BENEVIDES</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Image Placeholder for Phone with Map -->
+                    <div class="relative w-full md:w-1/2 flex justify-center md:justify-start">
+                        <img src="https://placehold.co/300x400/8B5CF6/000000?text=Mapa+GPS" alt="Mapa de localização" class="w-full max-w-xs rounded-3xl shadow-xl transform hover:scale-105 transition-transform duration-300">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-[#4a0063] py-6 px-6 text-center text-sm">
+            <p>&copy; 2024 Mister Açaíteria. Todos os direitos reservados.</p>
+            <div class="mt-2 space-x-4">
+                <a href="#" class="hover:text-yellow-300">Facebook</a>
+                <a href="#" class="hover:text-yellow-300">Instagram</a>
+                <a href="#" class="hover:text-yellow-300">TikTok</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Lógica do menu mobile
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Lógica do formulário de pedido
+        const orderForm = document.getElementById('order-form');
+        const nameInput = document.getElementById('name');
+        const phoneInput = document.getElementById('phone');
+        const addressInput = document.getElementById('address');
+        const sizeSelect = document.getElementById('size');
+        const toppingsCheckboxes = document.querySelectorAll('input[name="topping"]');
+        const toppingLimitInfo = document.getElementById('topping-limit-info');
+        const messageBox = document.getElementById('message-box');
+        const messageContent = document.getElementById('message-content');
+        const closeMessageBtn = document.getElementById('close-message');
+        
+        // Define o limite de acompanhamentos com base no tamanho
+        let maxToppings = 3;
+
+        sizeSelect.addEventListener('change', () => {
+            const selectedSize = sizeSelect.value;
+            // Reinicia a contagem de acompanhamentos ao mudar o tamanho
+            toppingsCheckboxes.forEach(checkbox => checkbox.checked = false);
+
+            if (selectedSize === 'Gigante') {
+                maxToppings = 4;
+            } else {
+                maxToppings = 3;
+            }
+            toppingLimitInfo.textContent = `Selecione até ${maxToppings} acompanhamento${maxToppings > 1 ? 's' : ''}.`;
+        });
+        
+        // Adiciona a validação para cada checkbox de acompanhamento
+        toppingsCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const checkedCount = document.querySelectorAll('input[name="topping"]:checked').length;
+                
+                if (checkedCount > maxToppings) {
+                    checkbox.checked = false;
+                    messageContent.textContent = `Você pode selecionar no máximo ${maxToppings} acompanhamento${maxToppings > 1 ? 's' : ''}.`;
+                    messageBox.classList.remove('hidden');
+                }
+            });
+        });
+
+        orderForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const name = nameInput.value.trim();
+            const phone = phoneInput.value.trim();
+            const address = addressInput.value.trim();
+            const selectedSize = sizeSelect.value;
+            const selectedToppings = Array.from(document.querySelectorAll('input[name="topping"]:checked'))
+                                          .map(checkbox => checkbox.value);
+
+            if (!name || !phone || !address || !selectedSize) {
+                messageContent.textContent = "Por favor, preencha todos os campos obrigatórios (Nome, Telefone, Endereço e Tamanho).";
+                messageBox.classList.remove('hidden');
+                return;
+            }
+
+            // Construir a mensagem do pedido
+            let orderMessage = `Olá, gostaria de fazer um pedido!\n\n`;
+            orderMessage += `*Dados do Cliente:*\n`;
+            orderMessage += `Nome: ${name}\n`;
+            orderMessage += `Telefone: ${phone}\n`;
+            orderMessage += `Endereço: ${address}\n\n`;
+            
+            orderMessage += `*Meu Pedido:*\n`;
+            orderMessage += `- Açaí: ${selectedSize}\n`;
+            
+            // Adiciona o leite condensado automaticamente à mensagem
+            orderMessage += `- Acompanhamentos: Leite Condensado${selectedToppings.length > 0 ? ', ' : ''}${selectedToppings.join(', ')}\n`;
+            
+            // Número de telefone para o WhatsApp (substitua pelo seu número)
+            const whatsappNumber = '5591999999999'; // Exemplo: +55 (91) 99999-9999
+
+            // Codificar a mensagem para a URL
+            const encodedMessage = encodeURIComponent(orderMessage);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            // Redirecionar para o WhatsApp
+            window.open(whatsappUrl, '_blank');
+        });
+
+        // Lógica para fechar a caixa de mensagem
+        closeMessageBtn.addEventListener('click', () => {
+            messageBox.classList.add('hidden');
+        });
+        
+        // Inicializa a mensagem de limite de acompanhamentos
+        document.addEventListener('DOMContentLoaded', () => {
+            toppingLimitInfo.textContent = `Selecione até 3 acompanhamentos.`;
+        });
+    </script>
+</body>
+</html>
