@@ -71,9 +71,8 @@
                 <!-- Menu de Navegação -->
                 <ul class="hidden md:flex space-x-8 text-lg">
                     <li><a href="#" class="hover:text-yellow-300 transition-colors">Home</a></li>
-                    <li><a href="#" class="hover:text-yellow-300 transition-colors">Produtos</a></li>
-                    <li><a href="#" class="hover:text-yellow-300 transition-colors">Galeria</a></li>
-                    <li><a href="#" class="hover:text-yellow-300 transition-colors">Contato</a></li>
+                    <li><a href="#menu-section" class="hover:text-yellow-300 transition-colors">Cardápio</a></li>
+                    <li><a href="#contact-section" class="hover:text-yellow-300 transition-colors">Lojas e Contato</a></li>
                 </ul>
                 
                 <!-- Botão "Peça Agora" -->
@@ -89,9 +88,8 @@
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 text-center">
                 <a href="#" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Home</a>
-                <a href="#" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Produtos</a>
-                <a href="#" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Galeria</a>
-                <a href="#" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Contato</a>
+                <a href="#menu-section" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Cardápio</a>
+                <a href="#contact-section" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Lojas e Contato</a>
                 <a href="#order-section" class="block py-2 text-lg yellow-accent hover:bg-yellow-500 text-[#4a0063] rounded-full mt-4">Peça Agora</a>
             </div>
         </header>
@@ -120,7 +118,7 @@
                 
                 <!-- Image Container -->
                 <div class="relative w-full md:w-1/2 flex justify-center md:justify-end hidden-element" data-animate="fadeInScale">
-                    <img src="https://placehold.co/600x400/8B5CF6/000000?text=A%C3%A7a%C3%AD+delicioso" alt="Açaí Delicioso" class="w-full max-w-lg rounded-2xl shadow-xl transform hover:scale-105 transition-transform duration-300">
+                    <img src="foto.jpeg" alt="Açaí Delicioso" class="w-full max-w-lg rounded-2xl shadow-xl transform hover:scale-105 transition-transform duration-300">
                 </div>
             </section>
             
@@ -144,7 +142,7 @@
             </section>
 
             <!-- Menu Section (Cardápio) -->
-            <section class="container mx-auto px-6 py-12 textured-bg text-white hidden-element" data-animate="fadeIn">
+            <section id="menu-section" class="container mx-auto px-6 py-12 textured-bg text-white hidden-element" data-animate="fadeIn">
                 <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 uppercase text-[#ffd700]">Cardápio</h2>
                 
                 <!-- Menu Items - Sizes and Prices -->
@@ -162,9 +160,9 @@
                         <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 16,00</p>
                     </div>
                     <!-- Grande -->
-                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center hidden-element" data-animate="fadeInScale" data-delay="300">
+                    <div class="bg-[#4a0063] p-6 rounded-xl text-center shadow-lg flex flex-col items-center hidden-element" data-animate="fadeInScale" data-delay="300">
                         <h3 class="text-3xl font-bold text-yellow-300">Grande</h3>
-                        <p class="text-lg mt-1">550ml (+3 Acompanhamentos)</p>
+                        <p class="text-lg mt-1">550ml (+4 Acompanhamentos)</p>
                         <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 21,99</p>
                     </div>
                     <!-- Gigante -->
@@ -194,9 +192,15 @@
                         </div>
                         
                         <!-- Endereço -->
-                        <div class="mb-6">
+                        <div class="mb-4">
                             <label for="address" class="block text-2xl font-bold mb-2">Seu Endereço:</label>
                             <textarea id="address" name="address" rows="3" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" placeholder="Rua, número, bairro, complemento" required></textarea>
+                        </div>
+
+                        <!-- Ponto de Referência (novo campo) -->
+                        <div class="mb-6">
+                            <label for="reference-point" class="block text-2xl font-bold mb-2">Ponto de Referência:</label>
+                            <textarea id="reference-point" name="reference-point" rows="2" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" placeholder="Ex: Em frente à praça, ao lado do mercado..."></textarea>
                         </div>
 
                         <!-- Tamanho -->
@@ -273,11 +277,11 @@
             </section>
             
             <!-- Find a Store Section (updated with addresses) -->
-            <section class="bg-[#4a0063] text-white py-16 px-6">
+            <section id="contact-section" class="bg-[#4a0063] text-white py-16 px-6">
                 <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     <!-- Text Content (agora no grid) -->
                     <div class="text-center md:text-right">
-                        <h2 class="text-4xl md:text-5xl font-bold mb-4">Nossas Lojas</h2>
+                        <h2 class="text-4xl md:text-5xl font-bold mb-4">Lojas e Contato</h2>
                         <p class="text-lg md:text-xl mb-6 text-yellow-100">
                             Visite uma de nossas unidades e desfrute do nosso açaí.
                         </p>
@@ -357,6 +361,7 @@
         const nameInput = document.getElementById('name');
         const phoneInput = document.getElementById('phone');
         const addressInput = document.getElementById('address');
+        const referencePointInput = document.getElementById('reference-point');
         const sizeSelect = document.getElementById('size');
         const toppingsCheckboxes = document.querySelectorAll('input[name="topping"]');
         const toppingLimitInfo = document.getElementById('topping-limit-info');
@@ -372,7 +377,7 @@
             // Reinicia a contagem de acompanhamentos ao mudar o tamanho
             toppingsCheckboxes.forEach(checkbox => checkbox.checked = false);
 
-            if (selectedSize === 'Gigante') {
+            if (selectedSize === 'Gigante' || selectedSize === 'Grande') {
                 maxToppings = 4;
             } else {
                 maxToppings = 3;
@@ -399,6 +404,7 @@
             const name = nameInput.value.trim();
             const phone = phoneInput.value.trim();
             const address = addressInput.value.trim();
+            const referencePoint = referencePointInput.value.trim();
             const selectedSize = sizeSelect.value;
             const selectedToppings = Array.from(document.querySelectorAll('input[name="topping"]:checked'))
                                           .map(checkbox => checkbox.value);
@@ -414,7 +420,12 @@
             orderMessage += `*Dados do Cliente:*\n`;
             orderMessage += `Nome: ${name}\n`;
             orderMessage += `Telefone: ${phone}\n`;
-            orderMessage += `Endereço: ${address}\n\n`;
+            orderMessage += `Endereço: ${address}\n`;
+            if (referencePoint) {
+                orderMessage += `Ponto de Referência: ${referencePoint}\n\n`;
+            } else {
+                orderMessage += '\n';
+            }
             
             orderMessage += `*Meu Pedido:*\n`;
             orderMessage += `- Açaí: ${selectedSize}\n`;
@@ -423,7 +434,7 @@
             orderMessage += `- Acompanhamentos: Leite Condensado${selectedToppings.length > 0 ? ', ' : ''}${selectedToppings.join(', ')}\n`;
             
             // Número de telefone para o WhatsApp (substitua pelo seu número)
-            const whatsappNumber = '5591985054287'; // Exemplo: +55 (91) 98505-4287
+            const whatsappNumber = '5591985334021'; // Exemplo: +55 (91) 98505-4287
 
             // Codificar a mensagem para a URL
             const encodedMessage = encodeURIComponent(orderMessage);
