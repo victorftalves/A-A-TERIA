@@ -5,28 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mister Açaíteria - O Açaí Feito Para Você!</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inclui a biblioteca de confetes -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
         }
 
-        /* Textura de fundo e animação */
+        /* Background texture and animation */
         .textured-bg {
             background-color: #5D007C;
-            /* Adicionado uma segunda camada de textura de pontos para mais profundidade */
+            /* Added a second layer of dot texture for more depth */
             background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
                               linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
             background-size: 8px 8px, 20px 20px, 20px 20px;
         }
 
-        /* Cores e estilos gerais */
+        /* General colors and styles */
         .yellow-accent {
             background-color: #ffd700;
         }
 
-        /* Animações CSS */
+        /* CSS animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -45,7 +47,7 @@
             animation: fadeInScale 0.8s ease-out forwards;
         }
 
-        /* Atrasos para as animações */
+        /* Delays for animations */
         .delay-100 { animation-delay: 0.1s; }
         .delay-200 { animation-delay: 0.2s; }
         .delay-300 { animation-delay: 0.3s; }
@@ -55,6 +57,16 @@
         .hidden-element {
             opacity: 0;
         }
+
+        /* Card Hover Effect */
+        .card-hover-effect {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .card-hover-effect:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body class="textured-bg text-white">
@@ -62,21 +74,21 @@
         <!-- Header -->
         <header class="bg-[#4a0063] shadow-lg py-4 px-6 fixed w-full z-50">
             <nav class="container mx-auto flex justify-between items-center">
-                <!-- Logo e nome da loja -->
+                <!-- Logo and store name -->
                 <a href="#" class="flex items-center space-x-2">
                     <img src="logo.png" alt="Logo" class="h-10 rounded-full">
                     <span class="text-2xl font-bold">Mister Açaíteria</span>
                 </a>
                 
-                <!-- Menu de Navegação -->
+                <!-- Navigation Menu -->
                 <ul class="hidden md:flex space-x-8 text-lg">
                     <li><a href="#" class="hover:text-yellow-300 transition-colors">Home</a></li>
                     <li><a href="#menu-section" class="hover:text-yellow-300 transition-colors">Cardápio</a></li>
                     <li><a href="#contact-section" class="hover:text-yellow-300 transition-colors">Lojas e Contato</a></li>
                 </ul>
                 
-                <!-- Botão "Peça Agora" -->
-                <a href="#order-section" class="hidden md:block yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-2 px-6 rounded-full transition-colors transform hover:scale-105">Peça Agora</a>
+                <!-- "Peça Agora" Button -->
+                <a href="#order-section" class="hidden md:block yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-2 px-6 rounded-full transition-colors transform hover:scale-105 hover:shadow-2xl">Peça Agora</a>
                 
                 <!-- Mobile Menu Icon -->
                 <button id="menu-btn" class="md:hidden focus:outline-none">
@@ -100,7 +112,7 @@
             <section class="container mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between min-h-screen-minus-header">
                 <!-- Text Content -->
                 <div class="text-center md:text-left md:w-1/2 mb-8 md:mb-0 hidden-element" data-animate="fadeIn">
-                    <!-- Nova Logo e Título Integrados -->
+                    <!-- New Integrated Logo and Title -->
                     <div class="flex flex-col items-center justify-center md:justify-start md:items-start space-y-4 mb-4">
                         <img src="logo.png" alt="Mister Açaíteria Logo" class="h-36 object-contain">
                         <h1 class="text-3xl md:text-5xl font-bold leading-tight text-[#ffd700]">
@@ -111,62 +123,63 @@
                     <p class="text-lg md:text-xl mb-6 text-yellow-50">
                         A liberdade de escolha está nas suas mãos. Você escolhe.
                     </p>
-                    <a href="#" class="yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-3 px-8 rounded-full shadow-lg transition-colors transform hover:scale-105">
+                    <a href="#menu-section" class="yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-2xl transition-all transform hover:scale-105">
                         Conheça nossos produtos
                     </a>
                 </div>
                 
-                <!-- Image Container -->
+                <!-- Image Container with improved placeholder -->
                 <div class="relative w-full md:w-1/2 flex justify-center md:justify-end hidden-element" data-animate="fadeInScale">
+                    
                     <img src="foto.jpeg" alt="Açaí Delicioso" class="w-full max-w-lg rounded-2xl shadow-xl transform hover:scale-105 transition-transform duration-300">
                 </div>
             </section>
             
-            <!-- Features Section (O que nos torna únicos?) -->
-            <section class="container mx-auto px-6 py-12 bg-[#4a0063] rounded-t-3xl mt-12 shadow-inner hidden-element" data-animate="fadeIn">
+            <!-- Features Section -->
+            <section class="container mx-auto px-6 py-12 bg-[#4a0063] rounded-t-3xl mt-12 shadow-2xl hidden-element" data-animate="fadeIn">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-yellow-300">O que nos torna únicos?</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg hidden-element" data-animate="fadeIn" data-delay="100">
+                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg card-hover-effect hidden-element" data-animate="fadeIn" data-delay="100">
                         <span class="text-2xl font-bold text-[#4a0063]">Qualidade Premium</span>
                         <p class="mt-2 text-[#5D007C]">Usamos apenas açaí de alta qualidade, garantindo o sabor e a pureza.</p>
                     </div>
-                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg hidden-element" data-animate="fadeIn" data-delay="200">
+                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg card-hover-effect hidden-element" data-animate="fadeIn" data-delay="200">
                         <span class="text-2xl font-bold text-[#4a0063]">Sabores Exclusivos</span>
                         <p class="mt-2 text-[#5D007C]">Nossas receitas e combinações são únicas e pensadas para você.</p>
                     </div>
-                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg hidden-element" data-animate="fadeIn" data-delay="300">
+                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg card-hover-effect hidden-element" data-animate="fadeIn" data-delay="300">
                         <span class="text-2xl font-bold text-[#4a0063]">Ambiente Agradável</span>
                         <p class="mt-2 text-[#5D007C]">Um espaço perfeito para relaxar, trabalhar ou encontrar os amigos.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Menu Section (Cardápio) -->
+            <!-- Menu Section -->
             <section id="menu-section" class="container mx-auto px-6 py-12 textured-bg text-white hidden-element" data-animate="fadeIn">
                 <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 uppercase text-[#ffd700]">Cardápio</h2>
                 
                 <!-- Menu Items - Sizes and Prices -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                     <!-- Mini -->
-                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center hidden-element" data-animate="fadeInScale" data-delay="100">
+                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center hidden-element" data-animate="fadeInScale" data-delay="100">
                         <h3 class="text-3xl font-bold text-yellow-300">Mini</h3>
-                        <p class="text-lg mt-1">330ml</p>
+                        <p class="text-lg mt-1">330ml (+3 Acompanhamentos)</p>
                         <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 13,99</p>
                     </div>
                     <!-- Médio -->
-                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center hidden-element" data-animate="fadeInScale" data-delay="200">
+                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center hidden-element" data-animate="fadeInScale" data-delay="200">
                         <h3 class="text-3xl font-bold text-yellow-300">Médio</h3>
                         <p class="text-lg mt-1">400ml (+3 Acompanhamentos)</p>
                         <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 16,00</p>
                     </div>
                     <!-- Grande -->
-                    <div class="bg-[#4a0063] p-6 rounded-xl text-center shadow-lg flex flex-col items-center hidden-element" data-animate="fadeInScale" data-delay="300">
+                    <div class="bg-[#4a0063] p-6 rounded-xl text-center shadow-lg card-hover-effect flex flex-col items-center hidden-element" data-animate="fadeInScale" data-delay="300">
                         <h3 class="text-3xl font-bold text-yellow-300">Grande</h3>
                         <p class="text-lg mt-1">550ml (+4 Acompanhamentos)</p>
                         <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 21,99</p>
                     </div>
                     <!-- Gigante -->
-                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center hidden-element" data-animate="fadeInScale" data-delay="400">
+                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center hidden-element" data-animate="fadeInScale" data-delay="400">
                         <h3 class="text-3xl font-bold text-yellow-300">Gigante</h3>
                         <p class="text-lg mt-1">770ml (+4 Acompanhamentos)</p>
                         <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 24,99</p>
@@ -175,35 +188,35 @@
             </section>
 
             <!-- Order Section (with form for WhatsApp) -->
-            <section id="order-section" class="container mx-auto px-6 py-12 bg-[#4a0063] rounded-t-3xl mt-12 shadow-inner hidden-element" data-animate="fadeIn">
+            <section id="order-section" class="container mx-auto px-6 py-12 bg-[#4a0063] rounded-t-3xl mt-12 shadow-2xl hidden-element" data-animate="fadeIn">
                 <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 uppercase text-[#ffd700]">Faça seu Pedido</h2>
                 <div class="max-w-xl mx-auto p-8 bg-[#5D007C] rounded-2xl shadow-xl hidden-element" data-animate="fadeIn" data-delay="100">
                     <form id="order-form">
-                        <!-- Nome -->
+                        <!-- Name -->
                         <div class="mb-4">
                             <label for="name" class="block text-2xl font-bold mb-2">Seu Nome:</label>
                             <input type="text" id="name" name="name" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" placeholder="Seu nome completo" required>
                         </div>
                         
-                        <!-- Telefone -->
+                        <!-- Phone -->
                         <div class="mb-4">
                             <label for="phone" class="block text-2xl font-bold mb-2">Seu Telefone:</label>
                             <input type="tel" id="phone" name="phone" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" placeholder="(99) 99999-9999" required>
                         </div>
                         
-                        <!-- Endereço -->
+                        <!-- Address -->
                         <div class="mb-4">
                             <label for="address" class="block text-2xl font-bold mb-2">Seu Endereço:</label>
                             <textarea id="address" name="address" rows="3" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" placeholder="Rua, número, bairro, complemento" required></textarea>
                         </div>
 
-                        <!-- Ponto de Referência (novo campo) -->
+                        <!-- Reference Point (new field) -->
                         <div class="mb-6">
                             <label for="reference-point" class="block text-2xl font-bold mb-2">Ponto de Referência:</label>
                             <textarea id="reference-point" name="reference-point" rows="2" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" placeholder="Ex: Em frente à praça, ao lado do mercado..."></textarea>
                         </div>
 
-                        <!-- Tamanho -->
+                        <!-- Size -->
                         <div class="mb-6">
                             <label for="size" class="block text-2xl font-bold mb-2">Selecione o Tamanho:</label>
                             <select id="size" name="size" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" required>
@@ -215,12 +228,12 @@
                             </select>
                         </div>
                         
-                        <!-- Acompanhamentos -->
+                        <!-- Toppings -->
                         <div class="mb-6">
                             <label class="block text-2xl font-bold mb-4">Escolha os Acompanhamentos:</label>
                             <p id="topping-limit-info" class="text-sm italic text-yellow-200 mb-2">Selecione até 3 acompanhamentos.</p>
                             <div class="grid grid-cols-2 gap-2 text-sm md:text-base">
-                                <!-- Lista de acompanhamentos -->
+                                <!-- List of toppings -->
                                 <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Avelã" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Avelã</span></label>
                                 <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Amendoim com chocolate" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Amendoim com chocolate</span></label>
                                 <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Amendoim granulado" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Amendoim granulado</span></label>
@@ -242,9 +255,9 @@
                             </div>
                         </div>
 
-                        <!-- Botão de Pedido -->
+                        <!-- Order Button -->
                         <div class="text-center">
-                            <button type="submit" class="yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-3 px-8 rounded-full shadow-lg transition-colors transform hover:scale-105">
+                            <button type="submit" class="yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-2xl transition-all transform hover:scale-105">
                                 Fazer Pedido no WhatsApp
                             </button>
                         </div>
@@ -276,10 +289,10 @@
                 </div>
             </section>
             
-            <!-- Find a Store Section (updated with addresses) -->
+            <!-- Find a Store Section -->
             <section id="contact-section" class="bg-[#4a0063] text-white py-16 px-6">
                 <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <!-- Text Content (agora no grid) -->
+                    <!-- Text Content -->
                     <div class="text-center md:text-right">
                         <h2 class="text-4xl md:text-5xl font-bold mb-4">Lojas e Contato</h2>
                         <p class="text-lg md:text-xl mb-6 text-yellow-100">
@@ -297,7 +310,7 @@
                         </div>
                     </div>
                     
-                    <!-- Google Map (agora no grid) -->
+                    <!-- Google Map -->
                     <div class="relative w-full flex justify-center md:justify-start">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8077.556370328928!2d-48.2436!3d-1.3515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a47c47ab12345%3A0x123456789abcdef!2sBenevides%2C%20PA!5e0!3m2!1spt-BR!2sbr!4v1694899999999!5m2!1spt-BR!2sbr" 
@@ -315,8 +328,8 @@
         </main>
 
         <!-- Footer -->
-        <footer class="bg-[#4a0063] py-6 px-6 text-center text-sm">
-            <!-- Logo no rodapé -->
+        <footer class="bg-[#4a0063] py-6 px-6 text-center text-sm shadow-inner">
+            <!-- Footer Logo -->
             <div class="flex justify-center mb-4">
                 <img src="logo.png" alt="Logo Rodapé" class="h-16 rounded-full">
             </div>
@@ -330,7 +343,7 @@
     </div>
 
     <script>
-        // Lógica para observar e animar elementos
+        // Logic to observe and animate elements
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -349,14 +362,14 @@
             observer.observe(element);
         });
 
-        // Lógica do menu mobile
+        // Mobile menu logic
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Lógica do formulário de pedido
+        // Order form logic
         const orderForm = document.getElementById('order-form');
         const nameInput = document.getElementById('name');
         const phoneInput = document.getElementById('phone');
@@ -369,12 +382,12 @@
         const messageContent = document.getElementById('message-content');
         const closeMessageBtn = document.getElementById('close-message');
         
-        // Define o limite de acompanhamentos com base no tamanho
+        // Define topping limit based on size
         let maxToppings = 3;
 
         sizeSelect.addEventListener('change', () => {
             const selectedSize = sizeSelect.value;
-            // Reinicia a contagem de acompanhamentos ao mudar o tamanho
+            // Reset checked toppings when size changes
             toppingsCheckboxes.forEach(checkbox => checkbox.checked = false);
 
             if (selectedSize === 'Gigante' || selectedSize === 'Grande') {
@@ -385,7 +398,7 @@
             toppingLimitInfo.textContent = `Selecione até ${maxToppings} acompanhamento${maxToppings > 1 ? 's' : ''}.`;
         });
         
-        // Adiciona a validação para cada checkbox de acompanhamento
+        // Add validation for each topping checkbox
         toppingsCheckboxes.forEach(checkbox => {
             checkbox.addEventListener('change', () => {
                 const checkedCount = document.querySelectorAll('input[name="topping"]:checked').length;
@@ -415,6 +428,13 @@
                 return;
             }
 
+            // Inicia a animação de confetes
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
             // Construir a mensagem do pedido
             let orderMessage = `Olá, gostaria de fazer um pedido!\n\n`;
             orderMessage += `*Dados do Cliente:*\n`;
@@ -430,26 +450,28 @@
             orderMessage += `*Meu Pedido:*\n`;
             orderMessage += `- Açaí: ${selectedSize}\n`;
             
-            // Adiciona o leite condensado automaticamente à mensagem
+            // Add condensed milk automatically to the message
             orderMessage += `- Acompanhamentos: Leite Condensado${selectedToppings.length > 0 ? ', ' : ''}${selectedToppings.join(', ')}\n`;
             
-            // Número de telefone para o WhatsApp (substitua pelo seu número)
-            const whatsappNumber = '5591985334021'; // Exemplo: +55 (91) 98505-4287
+            // WhatsApp phone number (replace with your number)
+            const whatsappNumber = '5591985334021'; // Ex: +55 (91) 98505-4287
 
-            // Codificar a mensagem para a URL
+            // Encode the message for the URL
             const encodedMessage = encodeURIComponent(orderMessage);
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-            // Redirecionar para o WhatsApp
-            window.open(whatsappUrl, '_blank');
+            // Redireciona para o WhatsApp após um pequeno atraso para a animação
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+            }, 2000); // Atraso de 2 segundos
         });
 
-        // Lógica para fechar a caixa de mensagem
+        // Logic to close the message box
         closeMessageBtn.addEventListener('click', () => {
             messageBox.classList.add('hidden');
         });
         
-        // Inicializa a mensagem de limite de acompanhamentos
+        // Initialize topping limit message
         document.addEventListener('DOMContentLoaded', () => {
             toppingLimitInfo.textContent = `Selecione até 3 acompanhamentos.`;
         });
