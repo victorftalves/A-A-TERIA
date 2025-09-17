@@ -69,6 +69,12 @@
             transform: translateY(-8px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
+
+        /* New rule for white outline on logos */
+        .logo-outline {
+            outline: 2px solid white;
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body class="textured-bg text-white">
@@ -78,7 +84,7 @@
             <nav class="container mx-auto flex justify-between items-center">
                 <!-- Logo and store name -->
                 <a href="#" class="flex items-center space-x-2">
-                    <img src="logo.png" alt="Logo" class="h-10 rounded-full">
+                    <img src="logo.png" alt="Logo" class="h-10 rounded-full logo-outline">
                     <span class="text-2xl font-bold">Mister Açaíteria</span>
                 </a>
                 
@@ -116,7 +122,7 @@
                 <div class="text-center md:text-left md:w-1/2 mb-8 md:mb-0 hidden-element" data-animate="fadeIn">
                     <!-- New Integrated Logo and Title -->
                     <div class="flex flex-col items-center justify-center md:justify-start md:items-start space-y-4 mb-4">
-                        <img src="logo.png" alt="Mister Açaíteria Logo" class="h-36 object-contain">
+                        <img src="logo.png" alt="Mister Açaíteria Logo" class="h-36 object-contain logo-outline">
                         <h1 class="text-3xl md:text-5xl font-bold leading-tight text-[#ffd700]">
                             <span class="block">#FEITO POR VOCÊ</span>
                             <span class="block">#FEITO PRA VOCÊ</span>
@@ -332,7 +338,7 @@
         <footer class="bg-[#4a0063] py-6 px-6 text-center text-sm shadow-inner">
             <!-- Footer Logo -->
             <div class="flex justify-center mb-4">
-                <img src="logo.png" alt="Logo Rodapé" class="h-16 rounded-full">
+                <img src="logo.png" alt="Logo Rodapé" class="h-16 rounded-full logo-outline">
             </div>
             <p>&copy; 2025 Fox Marketing. Todos os direitos reservados.</p>
             <div class="mt-2 space-x-4 flex justify-center items-center">
