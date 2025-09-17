@@ -10,21 +10,63 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+
+        /* Textura de fundo e animação */
+        .textured-bg {
+            background-color: #5D007C;
+            /* Adicionado uma segunda camada de textura de pontos para mais profundidade */
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 8px 8px, 20px 20px, 20px 20px;
+        }
+
+        /* Cores e estilos gerais */
         .yellow-accent {
             background-color: #ffd700;
         }
+
+        /* Animações CSS */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .animate-fade-in-scale {
+            animation: fadeInScale 0.8s ease-out forwards;
+        }
+
+        /* Atrasos para as animações */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+
+        .hidden-element {
+            opacity: 0;
+        }
     </style>
 </head>
-<body class="bg-[#5D007C] text-white">
+<body class="textured-bg text-white">
     <div class="min-h-screen flex flex-col">
         <!-- Header -->
         <header class="bg-[#4a0063] shadow-lg py-4 px-6 fixed w-full z-50">
             <nav class="container mx-auto flex justify-between items-center">
                 <!-- Logo -->
-                <div class="flex items-center space-x-2">
+                <a href="#" class="flex items-center space-x-2">
                     <img src="https://placehold.co/40x40/ffffff/000000?text=A" alt="Logo" class="rounded-full">
                     <span class="text-2xl font-bold">Mister Açaíteria</span>
-                </div>
+                </a>
                 
                 <!-- Menu de Navegação -->
                 <ul class="hidden md:flex space-x-8 text-lg">
@@ -34,8 +76,8 @@
                     <li><a href="#" class="hover:text-yellow-300 transition-colors">Contato</a></li>
                 </ul>
                 
-                <!-- Botão de Login (Opcional) -->
-                <a href="#" class="hidden md:block yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-2 px-6 rounded-full transition-colors">Login</a>
+                <!-- Botão "Peça Agora" -->
+                <a href="#order-section" class="hidden md:block yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-2 px-6 rounded-full transition-colors transform hover:scale-105">Peça Agora</a>
                 
                 <!-- Mobile Menu Icon -->
                 <button id="menu-btn" class="md:hidden focus:outline-none">
@@ -50,7 +92,7 @@
                 <a href="#" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Produtos</a>
                 <a href="#" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Galeria</a>
                 <a href="#" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Contato</a>
-                <a href="#" class="block py-2 text-lg yellow-accent hover:bg-yellow-500 text-[#4a0063] rounded-full mt-4">Login</a>
+                <a href="#order-section" class="block py-2 text-lg yellow-accent hover:bg-yellow-500 text-[#4a0063] rounded-full mt-4">Peça Agora</a>
             </div>
         </header>
 
@@ -59,38 +101,42 @@
             <!-- Hero Section -->
             <section class="container mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between min-h-screen-minus-header">
                 <!-- Text Content -->
-                <div class="text-center md:text-left md:w-1/2 mb-8 md:mb-0">
-                    <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-4 text-[#ffd700]">
-                        <span class="block">#FEITO POR VOCÊ</span>
-                        <span class="block">#FEITO PRA VOCÊ</span>
-                    </h1>
+                <div class="text-center md:text-left md:w-1/2 mb-8 md:mb-0 hidden-element" data-animate="fadeIn">
+                    <!-- Nova Logo e Título Integrados -->
+                    <div class="flex items-center justify-center md:justify-start space-x-4 mb-4">
+                        <img src="https://placehold.co/80x80/ffffff/000000?text=LOGO" alt="Logo Principal" class="rounded-full">
+                        <h1 class="text-5xl md:text-7xl font-bold leading-tight text-[#ffd700]">
+                            <span class="block">#FEITO POR VOCÊ</span>
+                            <span class="block">#FEITO PRA VOCÊ</span>
+                        </h1>
+                    </div>
                     <p class="text-lg md:text-xl mb-6 text-yellow-50">
                         A liberdade de escolha está nas suas mãos. Você escolhe.
                     </p>
-                    <a href="#" class="yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-3 px-8 rounded-full shadow-lg transition-colors">
+                    <a href="#" class="yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-3 px-8 rounded-full shadow-lg transition-colors transform hover:scale-105">
                         Conheça nossos produtos
                     </a>
                 </div>
                 
                 <!-- Image Container -->
-                <div class="relative w-full md:w-1/2 flex justify-center md:justify-end">
+                <div class="relative w-full md:w-1/2 flex justify-center md:justify-end hidden-element" data-animate="fadeInScale">
                     <img src="https://placehold.co/600x400/8B5CF6/000000?text=A%C3%A7a%C3%AD+delicioso" alt="Açaí Delicioso" class="w-full max-w-lg rounded-2xl shadow-xl transform hover:scale-105 transition-transform duration-300">
                 </div>
             </section>
             
             <!-- Features Section (O que nos torna únicos?) -->
-            <section class="container mx-auto px-6 py-12 bg-[#4a0063] rounded-t-3xl mt-12 shadow-inner">
+            <section class="container mx-auto px-6 py-12 bg-[#4a0063] rounded-t-3xl mt-12 shadow-inner hidden-element" data-animate="fadeIn">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-yellow-300">O que nos torna únicos?</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg">
+                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg hidden-element" data-animate="fadeIn" data-delay="100">
                         <span class="text-2xl font-bold text-[#4a0063]">Qualidade Premium</span>
                         <p class="mt-2 text-[#5D007C]">Usamos apenas açaí de alta qualidade, garantindo o sabor e a pureza.</p>
                     </div>
-                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg">
+                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg hidden-element" data-animate="fadeIn" data-delay="200">
                         <span class="text-2xl font-bold text-[#4a0063]">Sabores Exclusivos</span>
                         <p class="mt-2 text-[#5D007C]">Nossas receitas e combinações são únicas e pensadas para você.</p>
                     </div>
-                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg">
+                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg hidden-element" data-animate="fadeIn" data-delay="300">
                         <span class="text-2xl font-bold text-[#4a0063]">Ambiente Agradável</span>
                         <p class="mt-2 text-[#5D007C]">Um espaço perfeito para relaxar, trabalhar ou encontrar os amigos.</p>
                     </div>
@@ -98,31 +144,31 @@
             </section>
 
             <!-- Menu Section (Cardápio) -->
-            <section class="container mx-auto px-6 py-12 bg-[#5D007C] text-white">
+            <section class="container mx-auto px-6 py-12 textured-bg text-white hidden-element" data-animate="fadeIn">
                 <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 uppercase text-[#ffd700]">Cardápio</h2>
                 
                 <!-- Menu Items - Sizes and Prices -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                     <!-- Mini -->
-                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center hidden-element" data-animate="fadeInScale" data-delay="100">
                         <h3 class="text-3xl font-bold text-yellow-300">Mini</h3>
                         <p class="text-lg mt-1">330ml</p>
                         <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 13,99</p>
                     </div>
                     <!-- Médio -->
-                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center hidden-element" data-animate="fadeInScale" data-delay="200">
                         <h3 class="text-3xl font-bold text-yellow-300">Médio</h3>
                         <p class="text-lg mt-1">400ml (+3 Acompanhamentos)</p>
                         <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 16,00</p>
                     </div>
                     <!-- Grande -->
-                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center hidden-element" data-animate="fadeInScale" data-delay="300">
                         <h3 class="text-3xl font-bold text-yellow-300">Grande</h3>
                         <p class="text-lg mt-1">550ml (+3 Acompanhamentos)</p>
                         <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 21,99</p>
                     </div>
                     <!-- Gigante -->
-                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg flex flex-col items-center text-center hidden-element" data-animate="fadeInScale" data-delay="400">
                         <h3 class="text-3xl font-bold text-yellow-300">Gigante</h3>
                         <p class="text-lg mt-1">770ml (+4 Acompanhamentos)</p>
                         <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 24,99</p>
@@ -131,9 +177,9 @@
             </section>
 
             <!-- Order Section (with form for WhatsApp) -->
-            <section id="order-section" class="container mx-auto px-6 py-12 bg-[#4a0063] rounded-t-3xl mt-12 shadow-inner">
+            <section id="order-section" class="container mx-auto px-6 py-12 bg-[#4a0063] rounded-t-3xl mt-12 shadow-inner hidden-element" data-animate="fadeIn">
                 <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 uppercase text-[#ffd700]">Faça seu Pedido</h2>
-                <div class="max-w-xl mx-auto p-8 bg-[#5D007C] rounded-2xl shadow-xl">
+                <div class="max-w-xl mx-auto p-8 bg-[#5D007C] rounded-2xl shadow-xl hidden-element" data-animate="fadeIn" data-delay="100">
                     <form id="order-form">
                         <!-- Nome -->
                         <div class="mb-4">
@@ -179,7 +225,7 @@
                                 <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Flocos de arroz" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Flocos de arroz</span></label>
                                 <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Farinha de castanha de Caju" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Farinha de castanha de Caju</span></label>
                                 <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Farinha Láctea" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Farinha Láctea</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Granola" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Granola</span></label>
+                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Granola" class="rounded-sm text-yellow-500 focus:ring-ring-yellow-300"><span>Granola</span></label>
                                 <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Granulado Chocolate" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Granulado Chocolate</span></label>
                                 <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Leite" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Leite</span></label>
                                 <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Ovomaltine" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Ovomaltine</span></label>
@@ -194,7 +240,7 @@
 
                         <!-- Botão de Pedido -->
                         <div class="text-center">
-                            <button type="submit" class="yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-3 px-8 rounded-full shadow-lg transition-colors">
+                            <button type="submit" class="yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-3 px-8 rounded-full shadow-lg transition-colors transform hover:scale-105">
                                 Fazer Pedido no WhatsApp
                             </button>
                         </div>
@@ -211,7 +257,7 @@
                 </div>
 
                 <!-- Payment and Delivery Info -->
-                <div class="mt-12 text-center">
+                <div class="mt-12 text-center hidden-element" data-animate="fadeIn" data-delay="200">
                     <h3 class="text-3xl font-bold uppercase text-yellow-300 mb-6">Informações Importantes</h3>
                     <div class="max-w-xl mx-auto">
                         <div class="bg-white bg-opacity-10 p-6 rounded-xl shadow-lg mb-4">
@@ -263,25 +309,45 @@
     </div>
 </section>
 
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </section>
         </main>
 
         <!-- Footer -->
         <footer class="bg-[#4a0063] py-6 px-6 text-center text-sm">
+            <!-- Logo no rodapé -->
+            <div class="flex justify-center mb-4">
+                <img src="https://placehold.co/60x60/ffffff/000000?text=LOGO" alt="Logo Rodapé" class="rounded-full">
+            </div>
             <p>&copy; 2024 Mister Açaíteria. Todos os direitos reservados.</p>
             <div class="mt-2 space-x-4">
                 <a href="#" class="hover:text-yellow-300">Facebook</a>
-                <a href="#" class="hover:text-yellow-300">Instagram</a>
+                <a href="https://www.instagram.com/misteracaiteria" target="_blank" class="hover:text-yellow-300">@misteracaiteria</a>
                 <a href="#" class="hover:text-yellow-300">TikTok</a>
             </div>
         </footer>
     </div>
 
     <script>
+        // Lógica para observar e animar elementos
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    const animationType = element.dataset.animate;
+                    const delay = element.dataset.delay || '0';
+                    element.classList.add(`animate-${animationType}`);
+                    element.style.animationDelay = `${parseInt(delay) / 1000}s`;
+                    element.classList.remove('hidden-element');
+                    observer.unobserve(element);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.hidden-element').forEach(element => {
+            observer.observe(element);
+        });
+
         // Lógica do menu mobile
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -360,7 +426,7 @@
             orderMessage += `- Acompanhamentos: Leite Condensado${selectedToppings.length > 0 ? ', ' : ''}${selectedToppings.join(', ')}\n`;
             
             // Número de telefone para o WhatsApp (substitua pelo seu número)
-            const whatsappNumber = '5591999999999'; // Exemplo: +55 (91) 99999-9999
+            const whatsappNumber = '5591985054287'; // Exemplo: +55 (91) 98505-4287
 
             // Codificar a mensagem para a URL
             const encodedMessage = encodeURIComponent(orderMessage);
