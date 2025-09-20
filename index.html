@@ -10,222 +10,457 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
         }
 
-        /* Background texture and animation */
-        .textured-bg {
-            background-color: #5D007C;
-            /* Added a second layer of dot texture for more depth */
-            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                              linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 8px 8px, 20px 20px, 20px 20px;
+        /* Fundo Aprimorado com Gradiente Moderno */
+        .modern-gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #8e44ad 50%, #9b59b6 75%, #e74c3c 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            position: relative;
+        }
+        
+        .modern-gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
 
-        /* General colors and styles */
-        .yellow-accent {
-            background-color: #ffd700;
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* CSS animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Efeito de Morfismo de Vidro Aprimorado */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .glass-card-dark {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Botões Aprimorados */
+        .btn-primary {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #2d1b69;
+            font-weight: 700;
+            padding: 16px 32px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Tipografia Aprimorada */
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, #ffd700, #fff, #ffd700);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShimmer 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+        
+        @keyframes textShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Animações Aprimoradas */
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(60px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
         }
 
         @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+            from { 
+                opacity: 0; 
+                transform: scale(0.8) rotate(-5deg); 
+            }
+            to { 
+                opacity: 1; 
+                transform: scale(1) rotate(0deg); 
+            }
+        }
+        
+        @keyframes bounceIn {
+            0% { 
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.1);
+            }
+            100% { 
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
-        .animate-fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
         .animate-fade-in-scale {
             animation: fadeInScale 0.8s ease-out forwards;
         }
+        
+        .animate-bounce-in {
+            animation: bounceIn 0.6s ease-out forwards;
+        }
 
-        /* Delays for animations */
+        /* Efeitos de Hover 3D Aprimorados para Cards */
+        .card-3d-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .card-3d-hover:hover {
+            transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Efeitos de Logo Aprimorados */
+        .logo-glow {
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+            transition: all 0.3s ease;
+        }
+        
+        .logo-glow:hover {
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 1));
+            transform: scale(1.1);
+        }
+
+        /* Elementos Flutuantes */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Estilo de Formulário Aprimorado */
+        .form-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 16px 20px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Atrasos para animações escalonadas */
         .delay-100 { animation-delay: 0.1s; }
         .delay-200 { animation-delay: 0.2s; }
         .delay-300 { animation-delay: 0.3s; }
         .delay-400 { animation-delay: 0.4s; }
         .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-700 { animation-delay: 0.7s; }
+        .delay-800 { animation-delay: 0.8s; }
 
         .hidden-element {
             opacity: 0;
         }
 
-        /* Card Hover Effect */
-        .card-hover-effect {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        /* Responsividade Móvel Aprimorada */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
         }
-
-        .card-hover-effect:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        
+        /* Indicador de Rolagem */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
         }
-
-        /* New rule for white drop shadow on logos */
-        .logo-outline {
-            filter: drop-shadow(0 0 8px #ffffff);
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
         }
     </style>
 </head>
-<body class="textured-bg text-white">
+<body class="modern-gradient-bg text-white">
     <div class="min-h-screen flex flex-col">
-        <!-- Header -->
-        <header class="bg-[#4a0063] shadow-lg py-4 px-6 fixed w-full z-50">
+        <!-- Cabeçalho Aprimorado -->
+        <header class="glass-card-dark shadow-2xl py-6 px-6 fixed w-full z-50 transition-all duration-300">
             <nav class="container mx-auto flex justify-between items-center">
-                <!-- Logo and store name -->
-                <a href="#" class="flex items-center space-x-2">
-                    <img src="logo.png" alt="Logo" class="h-10 rounded-full logo-outline">
-                    <span class="text-2xl font-bold">Mister Açaíteria</span>
+                <!-- Logo e nome da loja -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <img src="logo.png" alt="Logo" class="h-12 rounded-full logo-glow transition-all duration-300">
+                    <span class="text-2xl font-bold group-hover:text-yellow-300 transition-colors">Mister Açaíteria</span>
                 </a>
                 
-                <!-- Navigation Menu -->
+                <!-- Menu de Navegação -->
                 <ul class="hidden md:flex space-x-8 text-lg">
-                    <li><a href="#" class="hover:text-yellow-300 transition-colors">Home</a></li>
-                    <li><a href="#menu-section" class="hover:text-yellow-300 transition-colors">Cardápio</a></li>
-                    <li><a href="#contact-section" class="hover:text-yellow-300 transition-colors">Lojas e Contato</a></li>
+                    <li><a href="#" class="hover:text-yellow-300 transition-all duration-300 relative group">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a></li>
+                    <li><a href="#menu-section" class="hover:text-yellow-300 transition-all duration-300 relative group">
+                        Cardápio
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a></li>
+                    <li><a href="#contact-section" class="hover:text-yellow-300 transition-all duration-300 relative group">
+                        Lojas e Contato
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
+                    </a></li>
                 </ul>
                 
-                <!-- "Peça Agora" Button -->
-                <a href="#order-section" class="hidden md:block yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-2 px-6 rounded-full transition-colors transform hover:scale-105 hover:shadow-2xl">Peça Agora</a>
+                <!-- Botão "Peça Agora" Aprimorado -->
+                <a href="#order-section" class="hidden md:block btn-primary">
+                    Peça Agora
+                </a>
                 
-                <!-- Mobile Menu Icon -->
-                <button id="menu-btn" class="md:hidden focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <!-- Ícone do Menu Mobile -->
+                <button id="menu-btn" class="md:hidden focus:outline-none group">
+                    <svg class="w-6 h-6 group-hover:text-yellow-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                     </svg>
                 </button>
             </nav>
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 text-center">
-                <a href="#" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Home</a>
-                <a href="#menu-section" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Cardápio</a>
-                <a href="#contact-section" class="block py-2 text-lg hover:bg-purple-700 rounded-md">Lojas e Contato</a>
-                <a href="#order-section" class="block py-2 text-lg yellow-accent hover:bg-yellow-500 text-[#4a0063] rounded-full mt-4">Peça Agora</a>
+            <!-- Menu Mobile Aprimorado -->
+            <div id="mobile-menu" class="hidden md:hidden mt-6 text-center glass-card rounded-2xl p-4">
+                <a href="#" class="block py-3 text-lg hover:bg-white/10 rounded-xl transition-all">Home</a>
+                <a href="#menu-section" class="block py-3 text-lg hover:bg-white/10 rounded-xl transition-all">Cardápio</a>
+                <a href="#contact-section" class="block py-3 text-lg hover:bg-white/10 rounded-xl transition-all">Lojas e Contato</a>
+                <a href="#order-section" class="block py-3 text-lg btn-primary mt-4 inline-block">Peça Agora</a>
             </div>
         </header>
 
-        <!-- Main Content Section -->
-        <main class="flex-grow pt-24 bg-[#5D007C]">
-            <!-- Hero Section -->
-            <section class="container mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between min-h-screen-minus-header">
-                <!-- Text Content -->
-                <div class="text-center md:text-left md:w-1/2 mb-8 md:mb-0 hidden-element" data-animate="fadeIn">
-                    <!-- New Integrated Logo and Title -->
-                    <div class="flex flex-col items-center justify-center md:justify-start md:items-start space-y-4 mb-4">
-                        <img src="logo.png" alt="Mister Açaíteria Logo" class="h-36 object-contain logo-outline">
-                        <h1 class="text-3xl md:text-5xl font-bold leading-tight text-[#ffd700]">
+        <!-- Seção de Conteúdo Principal Aprimorada -->
+        <main class="flex-grow pt-24">
+            <!-- Seção Hero Aprimorada -->
+            <section class="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center justify-between min-h-screen relative">
+                <!-- Conteúdo de Texto -->
+                <div class="text-center md:text-left md:w-1/2 mb-12 md:mb-0 hidden-element" data-animate="fadeInUp">
+                    <!-- Logo e Título Aprimorados -->
+                    <div class="flex flex-col items-center justify-center md:justify-start md:items-start space-y-6 mb-8">
+                        <img src="logo.png" alt="Mister Açaíteria Logo" class="h-40 object-contain logo-glow floating">
+                        <h1 class="hero-title text-center md:text-left">
                             <span class="block">#FEITO POR VOCÊ</span>
                             <span class="block">#FEITO PRA VOCÊ</span>
                         </h1>
                     </div>
-                    <p class="text-lg md:text-xl mb-6 text-yellow-50">
-                        A liberdade de escolha está nas suas mãos. Você escolhe.
+                    <p class="text-xl md:text-2xl mb-8 text-white/90 font-light leading-relaxed">
+                        A liberdade de escolha está nas suas mãos. <br>
+                        <span class="font-semibold text-yellow-300">Você escolhe.</span>
                     </p>
-                    <a href="#menu-section" class="yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-2xl transition-all transform hover:scale-105">
+                    <a href="#menu-section" class="btn-primary inline-block text-lg">
+                        <i class="fas fa-arrow-down mr-2"></i>
                         Conheça nossos produtos
                     </a>
                 </div>
                 
-                <!-- Image Container with improved placeholder -->
+                <!-- Contêiner de Imagem Aprimorado -->
                 <div class="relative w-full md:w-1/2 flex justify-center md:justify-end hidden-element" data-animate="fadeInScale">
-                    <img src="foto.jpeg" alt="Açaí Delicioso e diversas opções de acompanhamentos" class="w-full max-w-lg rounded-2xl shadow-xl transform hover:scale-105 transition-transform duration-300">
+                    <div class="relative">
+                        <img src="foto.jpeg" alt="Açaí Delicioso e diversas opções de acompanhamentos" class="w-full max-w-lg rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-500 floating">
+                        <div class="absolute inset-0 rounded-3xl bg-gradient-to-t from-purple-900/20 to-transparent"></div>
+                    </div>
+                </div>
+                
+                <!-- Indicador de Rolagem -->
+                <div class="scroll-indicator text-white/60">
+                    <i class="fas fa-chevron-down text-2xl"></i>
                 </div>
             </section>
             
-            <!-- Features Section -->
-            <section class="container mx-auto px-6 py-12 bg-[#4a0063] rounded-t-3xl mt-12 shadow-2xl hidden-element" data-animate="fadeIn">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-yellow-300">O que nos torna únicos?</h2>
+            <!-- Seção de Recursos Aprimorada -->
+            <section class="container mx-auto px-6 py-20 hidden-element" data-animate="fadeInUp">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 hero-title">O que nos torna únicos?</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg card-hover-effect hidden-element" data-animate="fadeIn" data-delay="100">
-                        <span class="text-2xl font-bold text-[#4a0063]">Qualidade Premium</span>
-                        <p class="mt-2 text-[#5D007C]">Usamos apenas açaí de alta qualidade, garantindo o sabor e a pureza.</p>
+                    <div class="glass-card p-8 rounded-3xl text-center card-3d-hover hidden-element" data-animate="bounceIn" data-delay="100">
+                        <div class="text-5xl mb-6">
+                            <i class="fas fa-star text-yellow-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-yellow-300 mb-4">Qualidade Premium</h3>
+                        <p class="text-white/80 leading-relaxed">Usamos apenas açaí de alta qualidade, garantindo o sabor e a pureza que você merece.</p>
                     </div>
-                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg card-hover-effect hidden-element" data-animate="fadeIn" data-delay="200">
-                        <span class="text-2xl font-bold text-[#4a0063]">Sabores Exclusivos</span>
-                        <p class="mt-2 text-[#5D007C]">Nossas receitas e combinações são únicas e pensadas para você.</p>
+                    <div class="glass-card p-8 rounded-3xl text-center card-3d-hover hidden-element" data-animate="bounceIn" data-delay="200">
+                        <div class="text-5xl mb-6">
+                            <img src="acai_sabores.png" alt="Sabores Exclusivos" class="h-16 w-16 object-contain">
+                        </div>
+                        <h3 class="text-2xl font-bold text-yellow-300 mb-4">Sabores Exclusivos</h3>
+                        <p class="text-white/80 leading-relaxed">Nossas receitas e combinações são únicas e pensadas especialmente para você.</p>
                     </div>
-                    <div class="bg-yellow-400 p-6 rounded-xl text-center shadow-lg card-hover-effect hidden-element" data-animate="fadeIn" data-delay="300">
-                        <span class="text-2xl font-bold text-[#4a0063]">Ambiente Agradável</span>
-                        <p class="mt-2 text-[#5D007C]">Um espaço perfeito para relaxar, trabalhar ou encontrar os amigos.</p>
+                    <div class="glass-card p-8 rounded-3xl text-center card-3d-hover hidden-element" data-animate="bounceIn" data-delay="300">
+                        <div class="text-5xl mb-6">
+                            <i class="fas fa-heart text-yellow-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-yellow-300 mb-4">Ambiente Agradável</h3>
+                        <p class="text-white/80 leading-relaxed">Um espaço perfeito para relaxar, trabalhar ou encontrar os amigos.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Menu Section -->
-            <section id="menu-section" class="container mx-auto px-6 py-12 textured-bg text-white hidden-element" data-animate="fadeIn">
-                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 uppercase text-[#ffd700]">Cardápio</h2>
+            <!-- Seção de Cardápio Aprimorada -->
+            <section id="menu-section" class="container mx-auto px-6 py-20 hidden-element" data-animate="fadeInUp">
+                <h2 class="text-5xl md:text-6xl font-bold text-center mb-16 hero-title uppercase">Cardápio</h2>
                 
-                <!-- Menu Items - Sizes and Prices -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Itens do Cardápio Aprimorados -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
                     <!-- Mini -->
-                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center hidden-element" data-animate="fadeInScale" data-delay="100">
-                        <h3 class="text-3xl font-bold text-yellow-300">Mini</h3>
-                        <p class="text-lg mt-1">330ml (+3 Acompanhamentos)</p>
-                        <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 13,99</p>
+                    <div class="glass-card-dark p-8 rounded-3xl card-3d-hover flex flex-col items-center text-center hidden-element" data-animate="bounceIn" data-delay="100">
+                        <div class="text-4xl mb-4">
+                            <img src="copo_acai.png" alt="Copo Açaí Mini" class="h-12 w-12 object-contain">
+                        </div>
+                        <h3 class="text-3xl font-bold text-yellow-300 mb-2">Mini</h3>
+                        <p class="text-lg mb-4 text-white/80">330ml (+3 Acompanhamentos)</p>
+                        <p class="text-4xl font-bold text-yellow-400">R$ 13,99</p>
                     </div>
                     <!-- Médio -->
-                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center hidden-element" data-animate="fadeInScale" data-delay="200">
-                        <h3 class="text-3xl font-bold text-yellow-300">Médio</h3>
-                        <p class="text-lg mt-1">400ml (+3 Acompanhamentos)</p>
-                        <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 16,00</p>
+                    <div class="glass-card-dark p-8 rounded-3xl card-3d-hover flex flex-col items-center text-center hidden-element" data-animate="bounceIn" data-delay="200">
+                        <div class="text-4xl mb-4">
+                            <img src="copo_acai.png" alt="Copo Açaí Médio" class="h-16 w-16 object-contain">
+                        </div>
+                        <h3 class="text-3xl font-bold text-yellow-300 mb-2">Médio</h3>
+                        <p class="text-lg mb-4 text-white/80">400ml (+3 Acompanhamentos)</p>
+                        <p class="text-4xl font-bold text-yellow-400">R$ 16,00</p>
                     </div>
                     <!-- Grande -->
-                    <div class="bg-[#4a0063] p-6 rounded-xl text-center shadow-lg card-hover-effect flex flex-col items-center hidden-element" data-animate="fadeInScale" data-delay="300">
-                        <h3 class="text-3xl font-bold text-yellow-300">Grande</h3>
-                        <p class="text-lg mt-1">550ml (+4 Acompanhamentos)</p>
-                        <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 21,99</p>
+                    <div class="glass-card-dark p-8 rounded-3xl card-3d-hover flex flex-col items-center text-center hidden-element" data-animate="bounceIn" data-delay="300">
+                        <div class="text-4xl mb-4">
+                            <img src="copo_acai.png" alt="Copo Açaí Grande" class="h-20 w-20 object-contain">
+                        </div>
+                        <h3 class="text-3xl font-bold text-yellow-300 mb-2">Grande</h3>
+                        <p class="text-lg mb-4 text-white/80">550ml (+4 Acompanhamentos)</p>
+                        <p class="text-4xl font-bold text-yellow-400">R$ 21,99</p>
                     </div>
                     <!-- Gigante -->
-                    <div class="bg-[#4a0063] p-6 rounded-xl shadow-lg card-hover-effect flex flex-col items-center text-center hidden-element" data-animate="fadeInScale" data-delay="400">
-                        <h3 class="text-3xl font-bold text-yellow-300">Gigante</h3>
-                        <p class="text-lg mt-1">770ml (+4 Acompanhamentos)</p>
-                        <p class="text-4xl font-bold mt-4 text-yellow-500">R$ 24,99</p>
+                    <div class="glass-card-dark p-8 rounded-3xl card-3d-hover flex flex-col items-center text-center hidden-element" data-animate="bounceIn" data-delay="400">
+                        <div class="text-4xl mb-4">
+                            <img src="copo_acai.png" alt="Copo Açaí Gigante" class="h-24 w-24 object-contain">
+                        </div>
+                        <h3 class="text-3xl font-bold text-yellow-300 mb-2">Gigante</h3>
+                        <p class="text-lg mb-4 text-white/80">770ml (+4 Acompanhamentos)</p>
+                        <p class="text-4xl font-bold text-yellow-400">R$ 24,99</p>
                     </div>
                 </div>
             </section>
 
-            <!-- Order Section (with form for WhatsApp) -->
-            <section id="order-section" class="container mx-auto px-6 py-12 bg-[#4a0063] rounded-t-3xl mt-12 shadow-2xl hidden-element" data-animate="fadeIn">
-                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 uppercase text-[#ffd700]">Faça seu Pedido</h2>
-                <div class="max-w-xl mx-auto p-8 bg-[#5D007C] rounded-2xl shadow-xl hidden-element" data-animate="fadeIn" data-delay="100">
-                    <form id="order-form">
-                        <!-- Name -->
-                        <div class="mb-4">
-                            <label for="name" class="block text-2xl font-bold mb-2">Seu Nome:</label>
-                            <input type="text" id="name" name="name" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" placeholder="Seu nome completo" required>
+            <!-- Seção de Pedido Aprimorada -->
+            <section id="order-section" class="container mx-auto px-6 py-20 hidden-element" data-animate="fadeInUp">
+                <h2 class="text-5xl md:text-6xl font-bold text-center mb-16 hero-title uppercase">Faça seu Pedido</h2>
+                <div class="max-w-2xl mx-auto glass-card p-10 rounded-3xl shadow-2xl hidden-element" data-animate="fadeInScale" data-delay="100">
+                    <form id="order-form" class="space-y-6">
+                        <!-- Nome -->
+                        <div>
+                            <label for="name" class="block text-xl font-semibold mb-3 text-yellow-300">
+                                <i class="fas fa-user mr-2"></i>Seu Nome:
+                            </label>
+                            <input type="text" id="name" name="name" class="form-input w-full text-gray-800" placeholder="Seu nome completo" required>
                         </div>
                         
-                        <!-- Phone -->
-                        <div class="mb-4">
-                            <label for="phone" class="block text-2xl font-bold mb-2">Seu Telefone:</label>
-                            <input type="tel" id="phone" name="phone" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" placeholder="(99) 99999-9999" required>
+                        <!-- Telefone -->
+                        <div>
+                            <label for="phone" class="block text-xl font-semibold mb-3 text-yellow-300">
+                                <i class="fas fa-phone mr-2"></i>Seu Telefone:
+                            </label>
+                            <input type="tel" id="phone" name="phone" class="form-input w-full text-gray-800" placeholder="(99) 99999-9999" required>
                         </div>
                         
-                        <!-- Address -->
-                        <div class="mb-4">
-                            <label for="address" class="block text-2xl font-bold mb-2">Seu Endereço:</label>
-                            <textarea id="address" name="address" rows="3" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" placeholder="Rua, número, bairro, complemento" required></textarea>
+                        <!-- Endereço -->
+                        <div>
+                            <label for="address" class="block text-xl font-semibold mb-3 text-yellow-300">
+                                <i class="fas fa-map-marker-alt mr-2"></i>Seu Endereço:
+                            </label>
+                            <textarea id="address" name="address" rows="3" class="form-input w-full text-gray-800" placeholder="Rua, número, bairro, complemento" required></textarea>
                         </div>
 
-                        <!-- Reference Point (new field) -->
-                        <div class="mb-6">
-                            <label for="reference-point" class="block text-2xl font-bold mb-2">Ponto de Referência:</label>
-                            <textarea id="reference-point" name="reference-point" rows="2" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" placeholder="Ex: Em frente à praça, ao lado do mercado..."></textarea>
+                        <!-- Ponto de Referência -->
+                        <div>
+                            <label for="reference-point" class="block text-xl font-semibold mb-3 text-yellow-300">
+                                <i class="fas fa-landmark mr-2"></i>Ponto de Referência:
+                            </label>
+                            <textarea id="reference-point" name="reference-point" rows="2" class="form-input w-full text-gray-800" placeholder="Ex: Em frente à praça, ao lado do mercado..."></textarea>
                         </div>
 
-                        <!-- Size -->
-                        <div class="mb-6">
-                            <label for="size" class="block text-2xl font-bold mb-2">Selecione o Tamanho:</label>
-                            <select id="size" name="size" class="w-full p-3 rounded-lg text-black bg-white focus:outline-none focus:ring-2 focus:ring-yellow-300" required>
+                        <!-- Tamanho -->
+                        <div>
+                            <label for="size" class="block text-xl font-semibold mb-3 text-yellow-300">
+                                <i class="fas fa-shopping-basket mr-2"></i>Selecione o Tamanho:
+                            </label>
+                            <select id="size" name="size" class="form-input w-full text-gray-800" required>
                                 <option value="" disabled selected>Escolha uma opção</option>
                                 <option value="Mini">Mini (330ml) - R$ 13,99</option>
                                 <option value="Médio">Médio (400ml) - R$ 16,00</option>
@@ -234,255 +469,382 @@
                             </select>
                         </div>
                         
-                        <!-- Toppings -->
-                        <div class="mb-6">
-                            <label class="block text-2xl font-bold mb-4">Escolha os Acompanhamentos:</label>
-                            <p id="topping-limit-info" class="text-sm italic text-yellow-200 mb-2">Selecione até 3 acompanhamentos.</p>
-                            <div class="grid grid-cols-2 gap-2 text-sm md:text-base">
-                                <!-- List of toppings -->
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Avelã" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Avelã</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Amendoim com chocolate" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Amendoim com chocolate</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Amendoim granulado" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Amendoim granulado</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Choco ball" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Choco ball</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Confeito colorido" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Confeito colorido</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Flocos de arroz" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Flocos de arroz</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Farinha de castanha de Caju" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Farinha de castanha de Caju</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Farinha Láctea" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Farinha Láctea</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Granola" class="rounded-sm text-yellow-500 focus:ring-ring-yellow-300"><span>Granola</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Granulado Chocolate" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Granulado Chocolate</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Leite" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Leite</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Ovomaltine" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Ovomaltine</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Paçoca" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Paçoca</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Jujuba" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Jujuba</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="KitKat" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>KitKat</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="M&M" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>M&M</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Negresco" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Negresco</span></label>
-                                <label class="flex items-center space-x-2"><input type="checkbox" name="topping" value="Sucrilhos" class="rounded-sm text-yellow-500 focus:ring-yellow-300"><span>Sucrilhos</span></label>
+                        <!-- Acompanhamentos -->
+                        <div>
+                            <label class="block text-xl font-semibold mb-4 text-yellow-300">
+                                <i class="fas fa-plus-circle mr-2"></i>Escolha os Acompanhamentos:
+                            </label>
+                            <p id="topping-limit-info" class="text-sm italic text-yellow-200 mb-4">Selecione até 3 acompanhamentos.</p>
+                            <div class="grid grid-cols-2 gap-3 text-sm md:text-base">
+                                <!-- Lista de acompanhamentos com estilo aprimorado -->
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Avelã" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Avelã</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Amendoim com chocolate" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Amendoim com chocolate</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Amendoim granulado" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Amendoim granulado</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Choco ball" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Choco ball</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Confeito colorido" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Confeito colorido</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Flocos de arroz" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Flocos de arroz</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Granola" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Granola</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Leite condensado" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Leite condensado</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Leite em pó" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Leite em pó</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Morango" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Morango</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Banana" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Banana</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Kiwi" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Kiwi</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Manga" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Manga</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Uva" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Uva</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Coco ralado" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Coco ralado</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Castanha do Pará" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Castanha do Pará</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Paçoca" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Paçoca</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Biscoito" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Biscoito</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Mel" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Mel</span>
+                                </label>
+                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                    <input type="checkbox" name="topping" value="Nutella" class="rounded text-yellow-500 focus:ring-yellow-300">
+                                    <span>Nutella</span>
+                                </label>
                             </div>
                         </div>
-
-                        <!-- Order Button -->
-                        <div class="text-center">
-                            <button type="submit" class="yellow-accent hover:bg-yellow-500 text-[#4a0063] font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-2xl transition-all transform hover:scale-105">
-                                Fazer Pedido no WhatsApp
-                            </button>
+                        
+                        <!-- Comentários Adicionais -->
+                        <div>
+                            <label for="comments" class="block text-xl font-semibold mb-3 text-yellow-300">
+                                <i class="fas fa-comment mr-2"></i>Observações Adicionais:
+                            </label>
+                            <textarea id="comments" name="comments" rows="3" class="form-input w-full text-gray-800" placeholder="Alguma observação especial sobre seu pedido?"></textarea>
                         </div>
+                        
+                        <!-- Botão de Envio Aprimorado -->
+                        <button type="submit" class="btn-primary w-full text-xl py-4">
+                            <i class="fab fa-whatsapp mr-3"></i>
+                            Enviar Pedido via WhatsApp
+                        </button>
                     </form>
-
-                    <!-- Message Box -->
-                    <div id="message-box" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4">
-                        <div class="bg-white p-6 rounded-lg shadow-xl text-center text-gray-800">
-                            <h3 class="text-xl font-bold mb-4">Atenção</h3>
-                            <p id="message-content" class="mb-4"></p>
-                            <button id="close-message" class="bg-purple-600 text-white py-2 px-4 rounded-full hover:bg-purple-700 transition-colors">Fechar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Payment and Delivery Info -->
-                <div class="mt-12 text-center hidden-element" data-animate="fadeIn" data-delay="200">
-                    <h3 class="text-3xl font-bold uppercase text-yellow-300 mb-6">Informações Importantes</h3>
-                    <div class="max-w-xl mx-auto">
-                        <div class="bg-white bg-opacity-10 p-6 rounded-xl shadow-lg mb-4">
-                            <h4 class="text-xl font-bold mb-2 text-yellow-200">Formas de Pagamento</h4>
-                            <p class="text-lg">Cartão de Crédito e Débito, Pix e Dinheiro.</p>
-                        </div>
-                        <div class="bg-white bg-opacity-10 p-6 rounded-xl shadow-lg">
-                            <h4 class="text-xl font-bold mb-2 text-yellow-200">Taxa de Entrega</h4>
-                            <p class="text-lg">Taxa de R$6 a R$12. Consulte seu bairro no WhatsApp para saber o valor exato.</p>
-                        </div>
-                    </div>
                 </div>
             </section>
-            
-            <!-- Find a Store Section -->
-            <section id="contact-section" class="bg-[#4a0063] text-white py-16 px-6">
-                <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <!-- Text Content -->
-                    <div class="text-center md:text-right">
-                        <h2 class="text-4xl md:text-5xl font-bold mb-4">Lojas e Contato</h2>
-                        <p class="text-lg md:text-xl mb-6 text-yellow-100">
-                            Visite uma de nossas unidades e desfrute do nosso açaí.
-                        </p>
-                        <div class="text-left md:text-right">
-                            <div class="mb-4">
-                                <h3 class="text-2xl font-bold text-yellow-300">Unidade 1</h3>
-                                <p class="text-lg">AV. JOAQUIM PEREIRA DE QUEIROZ, PRAÇA BAMBULUAR, BEGOZÃO BENEVIDES</p>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-yellow-300">Unidade 2</h3>
-                                <p class="text-lg">RUA PINTO BRAGA, EM FRENTE AO MINI SHOPPING, CENTRO BENEVIDES</p>
-                            </div>
+
+            <!-- Seção de Contato Aprimorada -->
+            <section id="contact-section" class="container mx-auto px-6 py-20 hidden-element" data-animate="fadeInUp">
+                <h2 class="text-5xl md:text-6xl font-bold text-center mb-16 hero-title uppercase">Lojas e Contato</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+                    <!-- Loja Centro -->
+                    <div class="glass-card p-8 rounded-3xl card-3d-hover text-center hidden-element" data-animate="bounceIn" data-delay="100">
+                        <div class="text-5xl mb-6">
+                            <i class="fas fa-store text-yellow-400"></i>
                         </div>
+                        <h3 class="text-2xl font-bold text-yellow-300 mb-4">Loja Centro</h3>
+                        <p class="text-white/80 mb-4 leading-relaxed">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            Rua Pinto Braga, em frente ao mini shopping<br>
+                            Centro - Benevides/PA
+                        </p>
+                        <p class="text-white/80 mb-6">
+                            <i class="fas fa-clock mr-2"></i>
+                            Seg-Dom: 10h às 22h
+                        </p>
+                        <a href="tel:+5511999999999" class="btn-primary inline-block">
+                            <i class="fas fa-phone mr-2"></i>
+                            (11) 99999-9999
+                        </a>
                     </div>
                     
-                    <!-- Google Map -->
-                    <div class="relative w-full flex justify-center md:justify-start">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8077.556370328928!2d-48.2436!3d-1.3515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a47c47ab12345%3A0x123456789abcdef!2sBenevides%2C%20PA!5e0!3m2!1spt-BR!2sbr!4v1694899999999!5m2!1spt-BR!2sbr" 
-                            width="100%" 
-                            height="400" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            class="rounded-3xl shadow-xl">
-                        </iframe>
+                    <!-- Loja Praça -->
+                    <div class="glass-card p-8 rounded-3xl card-3d-hover text-center hidden-element" data-animate="bounceIn" data-delay="200">
+                        <div class="text-5xl mb-6">
+                            <i class="fas fa-store text-yellow-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-yellow-300 mb-4">Loja Shopping</h3>
+                        <p class="text-white/80 mb-4 leading-relaxed">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            Praça Bambuluar, bairro Begozão<br>
+                            Nossa Combi - Benevides/PA
+                        </p>
+                        <p class="text-white/80 mb-6">
+                            <i class="fas fa-clock mr-2"></i>
+                            Seg-Dom: 10h às 22h
+                        </p>
+                        <a href="tel:+5511999999999" class="btn-primary inline-block">
+                            <i class="fas fa-phone mr-2"></i>
+                            (11) 99999-9999
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Redes Sociais -->
+                <div class="text-center">
+                    <h3 class="text-3xl font-bold mb-8 text-yellow-300">Siga-nos nas Redes Sociais</h3>
+                    <div class="flex justify-center space-x-8">
+                        <a href="#" class="text-4xl hover:text-yellow-300 transition-all duration-300 transform hover:scale-125">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-4xl hover:text-yellow-300 transition-all duration-300 transform hover:scale-125">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-4xl hover:text-yellow-300 transition-all duration-300 transform hover:scale-125">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
             </section>
         </main>
 
-        <!-- Footer -->
-        <footer class="bg-[#4a0063] py-6 px-6 text-center text-sm shadow-inner">
-            <!-- Footer Logo -->
-            <div class="flex justify-center mb-4">
-                <img src="logo.png" alt="Logo Rodapé" class="h-16 rounded-full logo-outline">
-            </div>
-            <p>&copy; 2025 Fox Marketing. Todos os direitos reservados.</p>
-            <div class="mt-2 space-x-4 flex justify-center items-center">
-                <a href="https://www.instagram.com/misteracaiteria" target="_blank" class="hover:text-yellow-300 transition-colors text-2xl">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://wa.me/5591985334021" target="_blank" class="hover:text-yellow-300 transition-colors text-2xl">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
+        <!-- Rodapé Aprimorado -->
+        <footer class="glass-card-dark py-8 px-6 text-center">
+            <div class="container mx-auto">
+                <p class="text-white/80 mb-4">
+                    &copy; 2024 Mister Açaíteria. Todos os direitos reservados.
+                </p>
+                <p class="text-white/60">
+                    Feito com <i class="fas fa-heart text-red-400"></i> para você!
+                </p>
             </div>
         </footer>
     </div>
 
+    <!-- JavaScript Aprimorado -->
     <script>
-        // Logic to observe and animate elements
+        // Alternar Menu Mobile Aprimorado
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.style.animation = mobileMenu.classList.contains('hidden') ? 
+                'fadeOut 0.3s ease-out' : 'fadeIn 0.3s ease-out';
+        });
+
+        // Animações de Rolagem Aprimoradas
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const element = entry.target;
                     const animationType = element.dataset.animate;
-                    const delay = element.dataset.delay || '0';
-                    element.classList.add(`animate-${animationType}`);
-                    element.style.animationDelay = `${parseInt(delay) / 1000}s`;
+                    const delay = element.dataset.delay;
+                    
+                    if (delay) {
+                        element.style.animationDelay = `${delay}ms`;
+                    }
+                    
                     element.classList.remove('hidden-element');
+                    element.classList.add(`animate-${animationType}`);
+                    
                     observer.unobserve(element);
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
-        document.querySelectorAll('.hidden-element').forEach(element => {
-            observer.observe(element);
+        // Observar todos os elementos com animações
+        document.querySelectorAll('.hidden-element').forEach(el => {
+            observer.observe(el);
         });
 
-        // Mobile menu logic
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Order form logic
+        // Manipulação de Formulário Aprimorada
         const orderForm = document.getElementById('order-form');
-        const nameInput = document.getElementById('name');
-        const phoneInput = document.getElementById('phone');
-        const addressInput = document.getElementById('address');
-        const referencePointInput = document.getElementById('reference-point');
-        const sizeSelect = document.getElementById('size');
-        const toppingsCheckboxes = document.querySelectorAll('input[name="topping"]');
+        const toppings = document.querySelectorAll('input[name="topping"]');
         const toppingLimitInfo = document.getElementById('topping-limit-info');
-        const messageBox = document.getElementById('message-box');
-        const messageContent = document.getElementById('message-content');
-        const closeMessageBtn = document.getElementById('close-message');
-        
-        // Define topping limit based on size
-        let maxToppings = 3;
+        const sizeSelect = document.getElementById('size');
 
-        sizeSelect.addEventListener('change', () => {
-            const selectedSize = sizeSelect.value;
-            // Reset checked toppings when size changes
-            toppingsCheckboxes.forEach(checkbox => checkbox.checked = false);
-
-            if (selectedSize === 'Gigante' || selectedSize === 'Grande') {
+        // Atualizar limite de acompanhamentos com base no tamanho
+        sizeSelect.addEventListener('change', function() {
+            const selectedSize = this.value;
+            let maxToppings = 3;
+            
+            if (selectedSize === 'Grande' || selectedSize === 'Gigante') {
                 maxToppings = 4;
-            } else {
-                maxToppings = 3;
             }
-            toppingLimitInfo.textContent = `Selecione até ${maxToppings} acompanhamento${maxToppings > 1 ? 's' : ''}.`;
+            
+            toppingLimitInfo.textContent = `Selecione até ${maxToppings} acompanhamentos.`;
+            
+            // Redefinir todos os acompanhamentos
+            toppings.forEach(topping => {
+                topping.checked = false;
+                topping.disabled = false;
+            });
         });
-        
-        // Add validation for each topping checkbox
-        toppingsCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', () => {
-                const checkedCount = document.querySelectorAll('input[name="topping"]:checked').length;
+
+        // Seleção de acompanhamentos aprimorada com feedback visual
+        toppings.forEach(topping => {
+            topping.addEventListener('change', function() {
+                const selectedSize = sizeSelect.value;
+                let maxToppings = 3;
                 
-                if (checkedCount > maxToppings) {
-                    checkbox.checked = false;
-                    messageContent.textContent = `Você pode selecionar no máximo ${maxToppings} acompanhamento${maxToppings > 1 ? 's' : ''}.`;
-                    messageBox.classList.remove('hidden');
+                if (selectedSize === 'Grande' || selectedSize === 'Gigante') {
+                    maxToppings = 4;
+                }
+                
+                const checkedToppings = document.querySelectorAll('input[name="topping"]:checked');
+                
+                if (checkedToppings.length >= maxToppings) {
+                    toppings.forEach(t => {
+                        if (!t.checked) {
+                            t.disabled = true;
+                            t.parentElement.style.opacity = '0.5';
+                        }
+                    });
+                } else {
+                    toppings.forEach(t => {
+                        t.disabled = false;
+                        t.parentElement.style.opacity = '1';
+                    });
+                }
+                
+                // Atualizar contador
+                toppingLimitInfo.textContent = `${checkedToppings.length}/${maxToppings} acompanhamentos selecionados.`;
+            });
+        });
+
+        // Envio de formulário aprimorado com confetes
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Acionar confetes
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ffd700', '#ffffff', '#8e44ad']
+            });
+            
+            // Obter dados do formulário
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            const address = formData.get('address');
+            const referencePoint = formData.get('reference-point');
+            const size = formData.get('size');
+            const selectedToppings = formData.getAll('topping');
+            const comments = formData.get('comments');
+            
+            // Criar mensagem do WhatsApp
+            let message = `🍇 *PEDIDO MISTER AÇAÍTERIA* 🍇\n\n`;
+            message += `👤 *Nome:* ${name}\n`;
+            message += `📱 *Telefone:* ${phone}\n`;
+            message += `📍 *Endereço:* ${address}\n`;
+            if (referencePoint) {
+                message += `🗺️ *Ponto de Referência:* ${referencePoint}\n`;
+            }
+            message += `🥤 *Tamanho:* ${size}\n`;
+            
+            if (selectedToppings.length > 0) {
+                message += `🍓 *Acompanhamentos:*\n`;
+                selectedToppings.forEach(topping => {
+                    message += `• ${topping}\n`;
+                });
+            }
+            
+            if (comments) {
+                message += `💬 *Observações:* ${comments}\n`;
+            }
+            
+            message += `\n✨ Obrigado por escolher a Mister Açaíteria! ✨`;
+            
+            // Codificar mensagem para WhatsApp
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappNumber = '5511999999999'; // Replace with actual number
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
+        });
+
+        // Enhanced smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
 
-        orderForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-
-            const name = nameInput.value.trim();
-            const phone = phoneInput.value.trim();
-            const address = addressInput.value.trim();
-            const referencePoint = referencePointInput.value.trim();
-            const selectedSize = sizeSelect.value;
-            const selectedToppings = Array.from(document.querySelectorAll('input[name="topping"]:checked'))
-                                          .map(checkbox => checkbox.value);
-
-            if (!name || !phone || !address || !selectedSize) {
-                messageContent.textContent = "Por favor, preencha todos os campos obrigatórios (Nome, Telefone, Endereço e Tamanho).";
-                messageBox.classList.remove('hidden');
-                return;
-            }
-
-            // Inicia a animação de confetes
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-
-            // Construir a mensagem do pedido
-            let orderMessage = `Olá, gostaria de fazer um pedido!\n\n`;
-            orderMessage += `*Dados do Cliente:*\n`;
-            orderMessage += `Nome: ${name}\n`;
-            orderMessage += `Telefone: ${phone}\n`;
-            orderMessage += `Endereço: ${address}\n`;
-            if (referencePoint) {
-                orderMessage += `Ponto de Referência: ${referencePoint}\n\n`;
-            } else {
-                orderMessage += '\n';
-            }
-            
-            orderMessage += `*Meu Pedido:*\n`;
-            orderMessage += `- Açaí: ${selectedSize}\n`;
-            
-            // Add condensed milk automatically to the message
-            orderMessage += `- Acompanhamentos: Leite Condensado${selectedToppings.length > 0 ? ', ' : ''}${selectedToppings.join(', ')}\n`;
-            
-            // WhatsApp phone number (replace with your number)
-            const whatsappNumber = '5591985334021'; // Ex: +55 (91) 98505-4287
-
-            // Encode the message for the URL
-            const encodedMessage = encodeURIComponent(orderMessage);
-            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-            // Redireciona para o WhatsApp após um pequeno atraso para a animação
-            setTimeout(() => {
-                window.open(whatsappUrl, '_blank');
-            }, 2000); // Atraso de 2 segundos
-        });
-
-        // Logic to close the message box
-        closeMessageBtn.addEventListener('click', () => {
-            messageBox.classList.add('hidden');
-        });
+        // Enhanced header scroll effect
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
         
-        // Initialize topping limit message
-        document.addEventListener('DOMContentLoaded', () => {
-            toppingLimitInfo.textContent = `Selecione até 3 acompanhamentos.`;
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
         });
     </script>
 </body>
