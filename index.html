@@ -222,6 +222,7 @@
             font-size: 16px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            color: #2d1b69; /* Garante que o texto dentro do input seja escuro */
         }
         
         .form-input:focus {
@@ -230,6 +231,11 @@
             background: rgba(255, 255, 255, 1);
             box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
             transform: translateY(-2px);
+        }
+        /* Para o select box do bairro */
+        .form-input option {
+            color: #2d1b69;
+            background: white;
         }
 
         /* Atrasos para animações escalonadas */
@@ -438,7 +444,7 @@
                             <label for="name" class="block text-xl font-semibold mb-3 text-yellow-300">
                                 <i class="fas fa-user mr-2"></i>Seu Nome:
                             </label>
-                            <input type="text" id="name" name="name" class="form-input w-full text-gray-800" placeholder="Seu nome completo" required>
+                            <input type="text" id="name" name="name" class="form-input w-full" placeholder="Seu nome completo" required>
                         </div>
                         
                         <!-- Telefone -->
@@ -446,15 +452,26 @@
                             <label for="phone" class="block text-xl font-semibold mb-3 text-yellow-300">
                                 <i class="fas fa-phone mr-2"></i>Seu Telefone:
                             </label>
-                            <input type="tel" id="phone" name="phone" class="form-input w-full text-gray-800" placeholder="(99) 99999-9999" required>
+                            <input type="tel" id="phone" name="phone" class="form-input w-full" placeholder="(99) 99999-9999" required>
+                        </div>
+
+                        <!-- Bairro (Novo Campo) -->
+                        <div>
+                            <label for="neighborhood" class="block text-xl font-semibold mb-3 text-yellow-300">
+                                <i class="fas fa-route mr-2"></i>Seu Bairro/Distrito:
+                            </label>
+                            <select id="neighborhood" name="neighborhood" class="form-input w-full" required>
+                                <option value="" disabled selected>Selecione seu bairro (para calcular a entrega)</option>
+                                <!-- Opções preenchidas via JavaScript -->
+                            </select>
                         </div>
                         
                         <!-- Endereço -->
                         <div>
                             <label for="address" class="block text-xl font-semibold mb-3 text-yellow-300">
-                                <i class="fas fa-map-marker-alt mr-2"></i>Seu Endereço:
+                                <i class="fas fa-map-marker-alt mr-2"></i>Rua e Número:
                             </label>
-                            <textarea id="address" name="address" rows="3" class="form-input w-full text-gray-800" placeholder="Rua, número, bairro, complemento" required></textarea>
+                            <textarea id="address" name="address" rows="3" class="form-input w-full" placeholder="Rua, número e complemento" required></textarea>
                         </div>
 
                         <!-- Ponto de Referência -->
@@ -462,7 +479,7 @@
                             <label for="reference-point" class="block text-xl font-semibold mb-3 text-yellow-300">
                                 <i class="fas fa-landmark mr-2"></i>Ponto de Referência:
                             </label>
-                            <textarea id="reference-point" name="reference-point" rows="2" class="form-input w-full text-gray-800" placeholder="Ex: Em frente à praça, ao lado do mercado..."></textarea>
+                            <textarea id="reference-point" name="reference-point" rows="2" class="form-input w-full" placeholder="Ex: Em frente à praça, ao lado do mercado..."></textarea>
                         </div>
 
                         <!-- Tamanho -->
@@ -470,7 +487,7 @@
                             <label for="size" class="block text-xl font-semibold mb-3 text-yellow-300">
                                 <i class="fas fa-shopping-basket mr-2"></i>Selecione o Tamanho:
                             </label>
-                            <select id="size" name="size" class="form-input w-full text-gray-800" required>
+                            <select id="size" name="size" class="form-input w-full" required>
                                 <option value="" disabled selected>Escolha uma opção</option>
                                 <option value="Mini">Mini (330ml) - R$ 13,99</option>
                                 <option value="Médio">Médio (400ml) - R$ 16,00</option>
@@ -567,9 +584,17 @@
                             <label for="comments" class="block text-xl font-semibold mb-3 text-yellow-300">
                                 <i class="fas fa-comment mr-2"></i>Observações Adicionais:
                             </label>
-                            <textarea id="comments" name="comments" rows="3" class="form-input w-full text-gray-800" placeholder="Alguma observação especial sobre seu pedido?"></textarea>
+                            <textarea id="comments" name="comments" rows="3" class="form-input w-full" placeholder="Alguma observação especial sobre seu pedido?"></textarea>
                         </div>
                         
+                        <!-- Resumo de Preços (NOVO) -->
+                        <div id="price-summary" class="glass-card-dark p-6 rounded-2xl text-center hidden">
+                            <p class="text-2xl font-bold text-yellow-300 mb-2">Resumo do Pedido</p>
+                            <p class="text-white/90 text-lg">Açaí (<span id="summary-size"></span>): <span id="summary-acai-price" class="font-semibold">R$ 0,00</span></p>
+                            <p class="text-white/90 text-lg mb-3 border-b border-white/20 pb-2">Taxa de Entrega (<span id="summary-neighborhood"></span>): <span id="summary-delivery-fee" class="font-semibold">R$ 0,00</span></p>
+                            <p class="text-4xl font-extrabold hero-title">TOTAL: <span id="summary-total">R$ 0,00</span></p>
+                        </div>
+
                         <!-- Botão de Envio Aprimorado -->
                         <button type="submit" class="btn-primary w-full text-xl py-4">
                             <i class="fab fa-whatsapp mr-3"></i>
@@ -657,6 +682,97 @@
 
     <!-- JavaScript Aprimorado -->
     <script>
+        // --- DADOS E VARIÁVEIS DE PREÇOS (COM NOVAS TAXAS DE ENTREGA) ---
+        const ACAl_PRICES = {
+            'Mini': 13.99,
+            'Médio': 16.00,
+            'Grande': 21.99,
+            'Gigante': 24.99
+        };
+
+        const DELIVERY_FEES = {
+            // LISTA DE BAIRROS E TAXAS ATUALIZADA (Benevides/PA)
+            'Agrinesp': 15.00,
+            'Alianza Park': 14.00,
+            'B. Das Flores': 6.00,
+            'B. das Flores (Cond. Amazon Flora)': 7.00,
+            'Begozão': 5.00,
+            'Belo Jardim 2': 6.00,
+            'Belo Jardim I': 6.00,
+            'Bituba': 20.00,
+            'Cajueiro': 15.00,
+            'Campestre': 15.00,
+            'Canutama': 14.00,
+            'Canutama 2': 14.00,
+            'CD Magazine Luiza': 15.00,
+            'Centro': 5.00,
+            'Centro Cohab': 6.00,
+            'Chácara Mosqueirense': 15.00,
+            'Cohab Dorote Stang': 8.00,
+            'Colher de Pau': 15.00,
+            'Concessionária DAF': 8.00,
+            'Cond. em frente a Jacauna': 15.00,
+            'Condomínio Jardins Marselha': 15.00,
+            'Condomínio Mariápolis': 6.00,
+            'Coopercargo': 15.00,
+            'Cupuaçu': 20.00,
+            'Duque de Caxias': 6.00,
+            'Empresa BRF': 15.00,
+            'Empresa Colina': 15.00,
+            'Empresa DUNORTE': 15.00,
+            'Empresa Heineken': 15.00,
+            'Empresa LOG': 15.00,
+            'Empresa Mateus': 10.00,
+            'Empresa Splash': 15.00,
+            'Faama': 15.00,
+            'Igarapé do Gelo': 8.00,
+            'Independente': 6.00,
+            'Independente (Guerra)': 6.00,
+            'Itacolomi': 7.00,
+            'Itaporã': 6.00,
+            'Liberdade': 6.00,
+            'Luiz Gonzaga': 14.00,
+            'Madre Tereza': 6.00,
+            'Maguari': 6.00,
+            'Marrocos': 10.00,
+            'Médice': 6.00,
+            'N. Senhora do Carmo': 6.00,
+            'Natura': 15.00,
+            'Neópolis': 10.00,
+            'Palavra da Vida': 6.00,
+            'Paricatuba': 15.00,
+            'Park Alvorada': 14.00,
+            'Park Norte Belém': 15.00,
+            'Posto Ale BR': 15.00,
+            'Posto de Gasolina Iccar': 15.00,
+            'Posto Marajó': 10.00,
+            'Posto Petrobras': 10.00,
+            'Santa Rosa': 6.00,
+            'Santos Dumont': 6.00,
+            'Sítio Falcão': 15.00,
+            'Super Frio': 15.00,
+            'Terceira Travessa': 15.00,
+            'Travessa Girassol': 15.00,
+            'Volante de Ouro': 20.00,
+            // 'Outras' usa 999.00 como flag para indicar que a taxa deve ser consultada/variável (R$ 5,00 a R$ 20,00)
+            'Outras': 999.00 
+        };
+        // ----------------------------------------------------
+
+        // Referências DOM atualizadas
+        const orderForm = document.getElementById('order-form');
+        const toppings = document.querySelectorAll('input[name="topping"]');
+        const toppingLimitInfo = document.getElementById('topping-limit-info');
+        const sizeSelect = document.getElementById('size');
+        const neighborhoodSelect = document.getElementById('neighborhood'); // NOVO
+        const priceSummary = document.getElementById('price-summary'); // NOVO
+        const summarySize = document.getElementById('summary-size'); // NOVO
+        const summaryAcaiPrice = document.getElementById('summary-acai-price'); // NOVO
+        const summaryNeighborhood = document.getElementById('summary-neighborhood'); // NOVO
+        const summaryDeliveryFee = document.getElementById('summary-delivery-fee'); // NOVO
+        const summaryTotal = document.getElementById('summary-total'); // NOVO
+
+
         // Alternar Menu Mobile Aprimorado
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -696,63 +812,113 @@
         document.querySelectorAll('.hidden-element').forEach(el => {
             observer.observe(el);
         });
+        
+        // --- LÓGICA DE PREÇOS E TAXAS DE ENTREGA (NOVO) ---
+        
+        // 1. Popula o Select de Bairros
+        function populateNeighborhoods() {
+            let html = '<option value="" disabled selected>Selecione seu bairro (para calcular a entrega)</option>';
+            for (const [neighborhood, fee] of Object.entries(DELIVERY_FEES).sort((a, b) => a[0].localeCompare(b[0]))) { // Ordena alfabeticamente
+                let feeText;
 
-        // Manipulação de Formulário Aprimorada
-        const orderForm = document.getElementById('order-form');
-        const toppings = document.querySelectorAll('input[name="topping"]');
-        const toppingLimitInfo = document.getElementById('topping-limit-info');
-        const sizeSelect = document.getElementById('size');
+                if (neighborhood === 'Outras') {
+                    // Texto personalizado para a opção 'Outras'
+                    feeText = '(R$ 5,00 a R$ 20,00 - Consultar)';
+                } else if (fee === 999.00) { 
+                    // Fallback para outros casos de consulta
+                    feeText = '(A Consultar)';
+                } else {
+                    // Taxa fixa normal
+                    feeText = `(R$ ${fee.toFixed(2).replace('.', ',')})`;
+                }
+                
+                html += `<option value="${neighborhood}">${neighborhood} ${feeText}</option>`;
+            }
+            neighborhoodSelect.innerHTML = html;
+        }
+        
+        // Função para formatar moeda
+        function formatCurrency(value) {
+            return `R$ ${value.toFixed(2).replace('.', ',')}`;
+        }
+        
+        // Função para calcular e atualizar o resumo do pedido
+        function updateOrderSummary() {
+            const selectedSize = sizeSelect.value;
+            const selectedNeighborhood = neighborhoodSelect.value;
 
-        // Atualizar limite de acompanhamentos com base no tamanho
-        sizeSelect.addEventListener('change', function() {
-            const selectedSize = this.value;
+            if (!selectedSize || !selectedNeighborhood || selectedNeighborhood === "") {
+                priceSummary.classList.add('hidden');
+                return;
+            }
+
+            const acaiPrice = ACAl_PRICES[selectedSize] || 0;
+            const deliveryFee = DELIVERY_FEES[selectedNeighborhood] || 0;
+            
+            // Se a taxa for 999.00, é um caso especial de consulta
+            if (deliveryFee === 999.00) {
+                summarySize.textContent = selectedSize;
+                summaryAcaiPrice.textContent = formatCurrency(acaiPrice);
+                summaryNeighborhood.textContent = selectedNeighborhood;
+                summaryDeliveryFee.textContent = 'A Consultar';
+                summaryTotal.textContent = formatCurrency(acaiPrice); // O total não inclui a taxa de consulta
+                priceSummary.classList.remove('hidden');
+                return;
+            }
+            
+            const totalPrice = acaiPrice + deliveryFee;
+
+            summarySize.textContent = selectedSize;
+            summaryAcaiPrice.textContent = formatCurrency(acaiPrice);
+            summaryNeighborhood.textContent = formatCurrency(deliveryFee);
+            summaryDeliveryFee.textContent = formatCurrency(deliveryFee);
+            summaryTotal.textContent = formatCurrency(totalPrice);
+            
+            priceSummary.classList.remove('hidden');
+        }
+
+        // --- LÓGICA DE ACOMPANHAMENTOS E LIMITES ---
+        
+        function updateToppingLimit() {
+            const selectedSize = sizeSelect.value;
             let maxToppings = 3;
             
             if (selectedSize === 'Grande' || selectedSize === 'Gigante') {
                 maxToppings = 4;
             }
-            
-            toppingLimitInfo.textContent = `Selecione até ${maxToppings} acompanhamentos.`;
-            
-            // Redefinir todos os acompanhamentos
-            toppings.forEach(topping => {
-                topping.checked = false;
-                topping.disabled = false;
-            });
-        });
 
-        // Seleção de acompanhamentos aprimorada com feedback visual
-        toppings.forEach(topping => {
-            topping.addEventListener('change', function() {
-                const selectedSize = sizeSelect.value;
-                let maxToppings = 3;
-                
-                if (selectedSize === 'Grande' || selectedSize === 'Gigante') {
-                    maxToppings = 4;
-                }
-                
-                const checkedToppings = document.querySelectorAll('input[name="topping"]:checked');
-                
-                if (checkedToppings.length >= maxToppings) {
-                    toppings.forEach(t => {
-                        if (!t.checked) {
-                            t.disabled = true;
-                            t.parentElement.style.opacity = '0.5';
-                        }
-                    });
+            const checkedToppings = document.querySelectorAll('input[name="topping"]:checked');
+            
+            // Desabilitar/habilitar com base no limite máximo
+            toppings.forEach(t => {
+                if (checkedToppings.length >= maxToppings && !t.checked) {
+                    t.disabled = true;
+                    t.parentElement.style.opacity = '0.5';
                 } else {
-                    toppings.forEach(t => {
-                        t.disabled = false;
-                        t.parentElement.style.opacity = '1';
-                    });
+                    t.disabled = false;
+                    t.parentElement.style.opacity = '1';
                 }
-                
-                // Atualizar contador
-                toppingLimitInfo.textContent = `${checkedToppings.length}/${maxToppings} acompanhamentos selecionados.`;
             });
+            
+            // Atualizar texto de informação
+            toppingLimitInfo.textContent = `${checkedToppings.length}/${maxToppings} acompanhamentos selecionados.`;
+        }
+        
+        // Listener principal para Tamanho e Bairro (dispara cálculo de preços e limite de toppings)
+        sizeSelect.addEventListener('change', () => {
+            updateOrderSummary();
+            updateToppingLimit();
+        });
+        
+        neighborhoodSelect.addEventListener('change', updateOrderSummary);
+
+        // Listener para acompanhamentos (dispara apenas a verificação de limite)
+        toppings.forEach(topping => {
+            topping.addEventListener('change', updateToppingLimit);
         });
 
-        // Envio de formulário aprimorado com confetes
+        // --- MANIPULAÇÃO DO FORMULÁRIO (ENVIO WHATSAPP) ---
+        
         orderForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -768,36 +934,61 @@
             const formData = new FormData(this);
             const name = formData.get('name');
             const phone = formData.get('phone');
+            const neighborhood = formData.get('neighborhood'); // NOVO
             const address = formData.get('address');
             const referencePoint = formData.get('reference-point');
             const size = formData.get('size');
             const selectedToppings = formData.getAll('topping');
             const comments = formData.get('comments');
+
+            // CÁLCULO DOS PREÇOS
+            const acaiPrice = ACAl_PRICES[size] || 0;
+            const deliveryFee = DELIVERY_FEES[neighborhood] || 0;
+            const totalPrice = acaiPrice + (deliveryFee === 999.00 ? 0 : deliveryFee);
             
             // Criar mensagem do WhatsApp
             let message = `🍇 *PEDIDO MISTER AÇAÍTERIA* 🍇\n\n`;
             message += `👤 *Nome:* ${name}\n`;
             message += `📱 *Telefone:* ${phone}\n`;
-            message += `📍 *Endereço:* ${address}\n`;
+            message += `📍 *Bairro:* ${neighborhood}\n`;
+            message += `🗺️ *Endereço:* ${address}\n`; 
+
             if (referencePoint) {
-                message += `🗺️ *Ponto de Referência:* ${referencePoint}\n`;
+                message += `📌 *Ponto de Referência:* ${referencePoint}\n`;
             }
+            
+            message += `\n--- *DETALHES DO PEDIDO* ---\n`;
             message += `🥤 *Tamanho:* ${size}\n`;
             
             if (selectedToppings.length > 0) {
-                message += `🍓 *Acompanhamentos:*\n`;
+                message += `🍓 *Acompanhamentos (com Leite Condensado padrão):*\n`;
                 selectedToppings.forEach(topping => {
                     message += `• ${topping}\n`;
                 });
+            } else {
+                message += `🍓 *Acompanhamentos (com Leite Condensado padrão):*\n`;
             }
             
-            // Adiciona o Leite Condensado na mensagem, já que ele é padrão
-            message += `• Leite Condensado\n`;
-
+            // LEITE CONDENSADO INCLUSO AQUI (PADRÃO)
+            message += `• Leite Condensado (PADRÃO)\n`;
+            
             if (comments) {
                 message += `💬 *Observações:* ${comments}\n`;
             }
+
+            message += `\n--- *VALORES* ---\n`;
+            message += `💸 *Valor do Açaí:* R$ ${acaiPrice.toFixed(2).replace('.', ',')}\n`;
             
+            // Lógica para taxa de entrega
+            if (deliveryFee === 999.00) {
+                message += `🚚 *Taxa de Entrega:* R$ 5,00 a R$ 20,00 - A CONSULTAR\n`;
+                message += `💰 *TOTAL (Açaí):* R$ ${acaiPrice.toFixed(2).replace('.', ',')}\n`;
+                message += `🚨 *Atenção:* O valor total com a taxa de entrega será confirmado pelo WhatsApp.`;
+            } else {
+                message += `🚚 *Taxa de Entrega:* R$ ${deliveryFee.toFixed(2).replace('.', ',')}\n`;
+                message += `💰 *TOTAL FINAL:* R$ ${totalPrice.toFixed(2).replace('.', ',')}\n`;
+            }
+
             message += `\n✨ Obrigado por escolher a Mister Açaíteria! ✨`;
             
             // Codificar mensagem para WhatsApp
@@ -839,13 +1030,14 @@
             lastScrollTop = scrollTop;
         });
 
-        // Add loading animation
+        // Add loading animation and initialize data
         window.addEventListener('load', () => {
             document.body.style.opacity = '0';
             document.body.style.transition = 'opacity 0.5s ease-in-out';
             
             setTimeout(() => {
                 document.body.style.opacity = '1';
+                populateNeighborhoods(); // Preenche os bairros ao carregar
             }, 100);
         });
     </script>
