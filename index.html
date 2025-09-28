@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mister Açaíteria - O Açaí Feito Para Você!</title>
+    <title>Mister Açaíteria - Monte Seu Açaí</title>
     <link rel="icon" href="logo.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Inclui a biblioteca de confetes -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google tag (gtag.js) -->
@@ -32,7 +31,6 @@
             overflow-x: hidden;
         }
 
-        /* Fundo Aprimorado com Gradiente Moderno */
         .modern-gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #8e44ad 50%, #9b59b6 75%, #e74c3c 100%);
             background-size: 400% 400%;
@@ -60,7 +58,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Efeito de Morfismo de Vidro Aprimorado */
         .glass-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
@@ -75,7 +72,6 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        /* Botões Aprimorados */
         .btn-primary {
             background: linear-gradient(45deg, #ffd700, #ffed4e);
             color: #2d1b69;
@@ -109,8 +105,20 @@
             transform: translateY(-2px) scale(1.05);
             box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
         }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffd700;
+            border: 2px solid #ffd700;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            color: #2d1b69;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
 
-        /* Tipografia Aprimorada */
         .hero-title {
             font-size: clamp(2.5rem, 8vw, 4rem);
             font-weight: 900;
@@ -129,57 +137,14 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Animações Aprimoradas */
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(60px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInScale { from { opacity: 0; transform: scale(0.8) rotate(-5deg); } to { opacity: 1; transform: scale(1) rotate(0deg); } }
+        @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } }
 
-        @keyframes fadeInScale {
-            from { 
-                opacity: 0; 
-                transform: scale(0.8) rotate(-5deg); 
-            }
-            to { 
-                opacity: 1; 
-                transform: scale(1) rotate(0deg); 
-            }
-        }
-        
-        @keyframes bounceIn {
-            0% { 
-                opacity: 0;
-                transform: scale(0.3);
-            }
-            50% { 
-                opacity: 1;
-                transform: scale(1.1);
-            }
-            100% { 
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-fade-in-scale { animation: fadeInScale 0.8s ease-out forwards; }
+        .animate-bounce-in { animation: bounceIn 0.6s ease-out forwards; }
 
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .animate-fade-in-scale {
-            animation: fadeInScale 0.8s ease-out forwards;
-        }
-        
-        .animate-bounce-in {
-            animation: bounceIn 0.6s ease-out forwards;
-        }
-
-        /* Efeitos de Hover 3D Aprimorados para Cards */
         .card-3d-hover {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             transform-style: preserve-3d;
@@ -192,7 +157,6 @@
                 0 0 0 1px rgba(255, 255, 255, 0.1);
         }
 
-        /* Efeitos de Logo Aprimorados */
         .logo-glow {
             filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
             transition: all 0.3s ease;
@@ -203,7 +167,6 @@
             transform: scale(1.1);
         }
 
-        /* Elementos Flutuantes */
         .floating {
             animation: floating 3s ease-in-out infinite;
         }
@@ -213,7 +176,6 @@
             50% { transform: translateY(-20px); }
         }
 
-        /* Estilo de Formulário Aprimorado */
         .form-input {
             background: rgba(255, 255, 255, 0.9);
             border: 2px solid transparent;
@@ -222,7 +184,7 @@
             font-size: 16px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
-            color: #2d1b69; /* Garante que o texto dentro do input seja escuro */
+            color: #2d1b69;
         }
         
         .form-input:focus {
@@ -232,13 +194,11 @@
             box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
             transform: translateY(-2px);
         }
-        /* Para o select box do bairro */
         .form-input option {
             color: #2d1b69;
             background: white;
         }
 
-        /* Atrasos para animações escalonadas */
         .delay-100 { animation-delay: 0.1s; }
         .delay-200 { animation-delay: 0.2s; }
         .delay-300 { animation-delay: 0.3s; }
@@ -252,14 +212,12 @@
             opacity: 0;
         }
 
-        /* Responsividade Móvel Aprimorada */
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.5rem;
             }
         }
         
-        /* Indicador de Rolagem */
         .scroll-indicator {
             position: absolute;
             bottom: 30px;
@@ -277,61 +235,45 @@
 </head>
 <body class="modern-gradient-bg text-white">
     <div class="min-h-screen flex flex-col">
-        <!-- Cabeçalho Aprimorado -->
+        <!-- Cabeçalho -->
         <header class="glass-card-dark shadow-2xl py-6 px-6 fixed w-full z-50 transition-all duration-300">
             <nav class="container mx-auto flex justify-between items-center">
-                <!-- Logo e nome da loja -->
                 <a href="#" class="flex items-center space-x-3 group">
                     <img src="logo.png" alt="Logo" class="h-12 rounded-full logo-glow transition-all duration-300">
                     <span class="text-2xl font-bold group-hover:text-yellow-300 transition-colors">Mister Açaíteria</span>
                 </a>
                 
-                <!-- Menu de Navegação -->
                 <ul class="hidden md:flex space-x-8 text-lg">
-                    <li><a href="#" class="hover:text-yellow-300 transition-all duration-300 relative group">
-                        Home
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-                    </a></li>
-                    <li><a href="#menu-section" class="hover:text-yellow-300 transition-all duration-300 relative group">
-                        Cardápio
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-                    </a></li>
-                    <li><a href="#contact-section" class="hover:text-yellow-300 transition-all duration-300 relative group">
-                        Lojas e Contato
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 transition-all duration-300 group-hover:w-full"></span>
-                    </a></li>
+                    <li><a href="#menu-section" class="hover:text-yellow-300 transition-all duration-300 relative group">Cardápio</a></li>
+                    <li><a href="#order-section" class="hover:text-yellow-300 transition-all duration-300 relative group">Peça Agora</a></li>
+                    <li><a href="#contact-section" class="hover:text-yellow-300 transition-all duration-300 relative group">Lojas e Contato</a></li>
                 </ul>
                 
-                <!-- Botão "Peça Agora" Aprimorado -->
                 <a href="#order-section" class="hidden md:block btn-primary">
-                    Peça Agora
+                    <i class="fas fa-shopping-cart mr-2"></i> Pedido
                 </a>
                 
-                <!-- Ícone do Menu Mobile -->
                 <button id="menu-btn" class="md:hidden focus:outline-none group">
                     <svg class="w-6 h-6 group-hover:text-yellow-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                     </svg>
                 </button>
             </nav>
-            <!-- Menu Mobile Aprimorado -->
             <div id="mobile-menu" class="hidden md:hidden mt-6 text-center glass-card rounded-2xl p-4">
-                <a href="#" class="block py-3 text-lg hover:bg-white/10 rounded-xl transition-all">Home</a>
                 <a href="#menu-section" class="block py-3 text-lg hover:bg-white/10 rounded-xl transition-all">Cardápio</a>
+                <a href="#order-section" class="block py-3 text-lg hover:bg-white/10 rounded-xl transition-all">Peça Agora</a>
                 <a href="#contact-section" class="block py-3 text-lg hover:bg-white/10 rounded-xl transition-all">Lojas e Contato</a>
-                <a href="#order-section" class="block py-3 text-lg btn-primary mt-4 inline-block">Peça Agora</a>
+                <a href="#order-section" class="block py-3 text-lg btn-primary mt-4 inline-block">Pedido</a>
             </div>
         </header>
 
-        <!-- Seção de Conteúdo Principal Aprimorada -->
+        <!-- Seção de Conteúdo Principal -->
         <main class="flex-grow pt-24">
-            <!-- Seção Hero Aprimorada -->
+            <!-- Seção Hero -->
             <section class="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center justify-between min-h-screen relative">
-                <!-- Conteúdo de Texto -->
                 <div class="text-center md:text-left md:w-1/2 mb-12 md:mb-0 hidden-element" data-animate="fadeInUp">
-                    <!-- Logo e Título Aprimorados -->
                     <div class="flex flex-col items-center justify-center md:justify-start md:items-start space-y-6 mb-8">
-                        <img src="logo.png" alt="Mister Açaíteria Logo" class="h-40 object-contain logo-glow floating">
+                        <img src="logo.png" alt="Mister Açaí Logo" class="h-40 object-contain logo-glow floating">
                         <h1 class="hero-title text-center md:text-left">
                             <span class="block">#FEITO POR VOCÊ</span>
                             <span class="block">#FEITO PRA VOCÊ</span>
@@ -347,7 +289,6 @@
                     </a>
                 </div>
                 
-                <!-- Contêiner de Imagem Aprimorado -->
                 <div class="relative w-full md:w-1/2 flex justify-center md:justify-end hidden-element" data-animate="fadeInScale">
                     <div class="relative">
                         <img src="foto.jpeg" alt="Açaí Delicioso e diversas opções de acompanhamentos" class="w-full max-w-lg rounded-3xl shadow-2xl transform hover:scale-105 transition-all duration-500 floating">
@@ -355,78 +296,36 @@
                     </div>
                 </div>
                 
-                <!-- Indicador de Rolagem -->
                 <div class="scroll-indicator text-white/60">
                     <i class="fas fa-chevron-down text-2xl"></i>
                 </div>
             </section>
             
-            <!-- Seção de Recursos Aprimorada -->
-            <section class="container mx-auto px-6 py-20 hidden-element" data-animate="fadeInUp">
-                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 hero-title">O que nos torna únicos?</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="glass-card p-8 rounded-3xl text-center card-3d-hover hidden-element" data-animate="bounceIn" data-delay="100">
-                        <div class="text-5xl mb-6">
-                            <i class="fas fa-star text-yellow-400"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-yellow-300 mb-4">Qualidade Premium</h3>
-                        <p class="text-white/80 leading-relaxed">Usamos apenas açaí de alta qualidade, garantindo o sabor e a pureza que você merece.</p>
-                    </div>
-                    <div class="glass-card p-8 rounded-3xl text-center card-3d-hover hidden-element" data-animate="bounceIn" data-delay="200">
-                        <div class="text-5xl mb-6">
-                            <img src="acai.png" alt="Sabores Exclusivos" class="h-16 w-16 object-contain">
-                        </div>
-                        <h3 class="text-2xl font-bold text-yellow-300 mb-4">Sabores Exclusivos</h3>
-                        <p class="text-white/80 leading-relaxed">Nossas receitas e combinações são únicas e pensadas especialmente para você.</p>
-                    </div>
-                    <div class="glass-card p-8 rounded-3xl text-center card-3d-hover hidden-element" data-animate="bounceIn" data-delay="300">
-                        <div class="text-5xl mb-6">
-                            <i class="fas fa-heart text-yellow-400"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-yellow-300 mb-4">Ambiente Agradável</h3>
-                        <p class="text-white/80 leading-relaxed">Um espaço perfeito para relaxar, trabalhar ou encontrar os amigos.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Seção de Cardápio Aprimorada -->
+            <!-- Seção de Cardápio (Mantida para referência de preços) -->
             <section id="menu-section" class="container mx-auto px-6 py-20 hidden-element" data-animate="fadeInUp">
                 <h2 class="text-5xl md:text-6xl font-bold text-center mb-16 hero-title uppercase">Cardápio</h2>
-                
-                <!-- Itens do Cardápio Aprimorados -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-                    <!-- Mini -->
+                    <!-- Cards de Tamanhos -->
                     <div class="glass-card-dark p-8 rounded-3xl card-3d-hover flex flex-col items-center text-center hidden-element" data-animate="bounceIn" data-delay="100">
-                        <div class="text-4xl mb-4">
-                            <img src="copo.png" alt="Copo Açaí Mini" class="h-12 w-12 object-contain">
-                        </div>
+                        <div class="text-4xl mb-4"><img src="copo.png" alt="Copo Açaí Mini" class="h-12 w-12 object-contain"></div>
                         <h3 class="text-3xl font-bold text-yellow-300 mb-2">Mini</h3>
                         <p class="text-lg mb-4 text-white/80">330ml (+3 Acompanhamentos)</p>
                         <p class="text-4xl font-bold text-yellow-400">R$ 13,99</p>
                     </div>
-                    <!-- Médio -->
                     <div class="glass-card-dark p-8 rounded-3xl card-3d-hover flex flex-col items-center text-center hidden-element" data-animate="bounceIn" data-delay="200">
-                        <div class="text-4xl mb-4">
-                            <img src="copo.png" alt="Copo Açaí Médio" class="h-16 w-16 object-contain">
-                        </div>
+                        <div class="text-4xl mb-4"><img src="copo.png" alt="Copo Açaí Médio" class="h-16 w-16 object-contain"></div>
                         <h3 class="text-3xl font-bold text-yellow-300 mb-2">Médio</h3>
                         <p class="text-lg mb-4 text-white/80">400ml (+3 Acompanhamentos)</p>
                         <p class="text-4xl font-bold text-yellow-400">R$ 16,00</p>
                     </div>
-                    <!-- Grande -->
                     <div class="glass-card-dark p-8 rounded-3xl card-3d-hover flex flex-col items-center text-center hidden-element" data-animate="bounceIn" data-delay="300">
-                        <div class="text-4xl mb-4">
-                            <img src="copo.png" alt="Copo Açaí Grande" class="h-20 w-20 object-contain">
-                        </div>
+                        <div class="text-4xl mb-4"><img src="copo.png" alt="Copo Açaí Grande" class="h-20 w-20 object-contain"></div>
                         <h3 class="text-3xl font-bold text-yellow-300 mb-2">Grande</h3>
                         <p class="text-lg mb-4 text-white/80">550ml (+4 Acompanhamentos)</p>
                         <p class="text-4xl font-bold text-yellow-400">R$ 21,99</p>
                     </div>
-                    <!-- Gigante -->
                     <div class="glass-card-dark p-8 rounded-3xl card-3d-hover flex flex-col items-center text-center hidden-element" data-animate="bounceIn" data-delay="400">
-                        <div class="text-4xl mb-4">
-                            <img src="copo.png" alt="Copo Açaí Gigante" class="h-24 w-24 object-contain">
-                        </div>
+                        <div class="text-4xl mb-4"><img src="copo.png" alt="Copo Açaí Gigante" class="h-24 w-24 object-contain"></div>
                         <h3 class="text-3xl font-bold text-yellow-300 mb-2">Gigante</h3>
                         <p class="text-lg mb-4 text-white/80">770ml (+4 Acompanhamentos)</p>
                         <p class="text-4xl font-bold text-yellow-400">R$ 24,99</p>
@@ -434,186 +333,237 @@
                 </div>
             </section>
 
-            <!-- Seção de Pedido Aprimorada -->
+            <!-- Seção de Pedido - Fluxo de Carrinho -->
             <section id="order-section" class="container mx-auto px-6 py-20 hidden-element" data-animate="fadeInUp">
-                <h2 class="text-5xl md:text-6xl font-bold text-center mb-16 hero-title uppercase">Faça seu Pedido</h2>
-                <div class="max-w-2xl mx-auto glass-card p-10 rounded-3xl shadow-2xl hidden-element" data-animate="fadeInScale" data-delay="100">
-                    <form id="order-form" class="space-y-6">
-                        <!-- Nome -->
-                        <div>
-                            <label for="name" class="block text-xl font-semibold mb-3 text-yellow-300">
-                                <i class="fas fa-user mr-2"></i>Seu Nome:
-                            </label>
-                            <input type="text" id="name" name="name" class="form-input w-full" placeholder="Seu nome completo" required>
-                        </div>
-                        
-                        <!-- Telefone -->
-                        <div>
-                            <label for="phone" class="block text-xl font-semibold mb-3 text-yellow-300">
-                                <i class="fas fa-phone mr-2"></i>Seu Telefone:
-                            </label>
-                            <input type="tel" id="phone" name="phone" class="form-input w-full" placeholder="(99) 99999-9999" required>
-                        </div>
+                <h2 class="text-5xl md:text-6xl font-bold text-center mb-16 hero-title uppercase">Monte seu Pedido (Copo a Copo)</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                    
+                    <!-- Coluna 1: Montagem do Copo (Formulário) -->
+                    <div class="lg:col-span-1">
+                        <div class="glass-card p-8 rounded-3xl shadow-2xl">
+                            <h3 class="text-3xl font-bold text-yellow-300 mb-6 border-b pb-4 border-white/20 flex items-center">
+                                <i class="fas fa-ice-cream mr-3"></i> 1. Personalize seu Copo
+                            </h3>
+                            <form id="cup-form" class="space-y-6">
+                                
+                                <!-- Tamanho -->
+                                <div>
+                                    <label for="size" class="block text-xl font-semibold mb-3 text-yellow-300">
+                                        <i class="fas fa-shopping-basket mr-2"></i> Tamanho:
+                                    </label>
+                                    <select id="size" name="size" class="form-input w-full" required>
+                                        <option value="" disabled selected>Escolha o tamanho</option>
+                                        <option value="Mini">Mini (330ml) - R$ 13,99</option>
+                                        <option value="Médio">Médio (400ml) - R$ 16,00</option>
+                                        <option value="Grande">Grande (550ml) - R$ 21,99</option>
+                                        <option value="Gigante">Gigante (770ml) - R$ 24,99</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Quantidade de Copos Iguais (Opcional, mas útil) -->
+                                <div>
+                                    <label for="quantity" class="block text-xl font-semibold mb-3 text-yellow-300">
+                                        <i class="fas fa-sort-numeric-up-alt mr-2"></i> Quantidade:
+                                    </label>
+                                    <input type="number" id="quantity" name="quantity" class="form-input w-full" value="1" min="1" required>
+                                    <p class="text-sm italic text-white/70 mt-1">Defina a quantidade de copos *idênticos*.</p>
+                                </div>
+                                
+                                <!-- Acompanhamentos -->
+                                <div>
+                                    <label class="block text-xl font-semibold mb-4 text-yellow-300">
+                                        <i class="fas fa-plus-circle mr-2"></i> Acompanhamentos:
+                                    </label>
+                                    <p id="topping-limit-info" class="text-sm italic text-yellow-200 mb-4">Selecione o tamanho para ver o limite.</p>
+                                    <div class="grid grid-cols-2 gap-3 text-sm md:text-base max-h-96 overflow-y-auto pr-2">
+                                        <!-- Lista de acompanhamentos -->
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Aveia" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Aveia</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Amendoim c/ chocolate" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Amendoim c/ chocolate</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Amendoim granulado" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Amendoim granulado</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Choco ball" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Choco ball</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Confeito Colorido" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Confeito Colorido</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Flocos de arroz" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Flocos de arroz</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Farinha de Castanha de Caju" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Farinha de Castanha de Caju</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Farinha Láctea" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Farinha Láctea</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Granola" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Granola</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Granulado Chocolate" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Granulado Chocolate</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Leite" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Leite em Pó</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Ovomaltine" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Ovomaltine</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Paçoca" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Paçoca</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Jujuba" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Jujuba</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Kitkat" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Kitkat</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="M&M" class="rounded text-yellow-500 focus:ring-yellow-300"><span>M&M</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Negresco" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Negresco</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Sucrilhos" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Sucrilhos</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Leite Condensado (EXTRA)" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Leite Condensado (Extra)</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Cobertura Chocolate (EXTRA)" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Cobertura Chocolate (Extra)</span></label>
+                                        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                            <input type="checkbox" name="topping" value="Cobertura Morango (EXTRA)" class="rounded text-yellow-500 focus:ring-yellow-300"><span>Cobertura Morango (Extra)</span></label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Comentários Adicionais -->
+                                <div>
+                                    <label for="comments" class="block text-xl font-semibold mb-3 text-yellow-300">
+                                        <i class="fas fa-comment mr-2"></i>Obs. do Copo:
+                                    </label>
+                                    <textarea id="comments" name="comments" rows="2" class="form-input w-full" placeholder="Ex: Sem Leite Condensado Padrão, pouca farinha..."></textarea>
+                                </div>
 
-                        <!-- Bairro (Novo Campo) -->
-                        <div>
-                            <label for="neighborhood" class="block text-xl font-semibold mb-3 text-yellow-300">
-                                <i class="fas fa-route mr-2"></i>Seu Bairro/Distrito:
-                            </label>
-                            <select id="neighborhood" name="neighborhood" class="form-input w-full" required>
-                                <option value="" disabled selected>Selecione seu bairro (para calcular a entrega)</option>
-                                <!-- Opções preenchidas via JavaScript -->
-                            </select>
+                                <!-- Botão Adicionar ao Carrinho -->
+                                <button type="submit" id="add-to-cart-btn" class="btn-primary w-full text-lg py-3">
+                                    <i class="fas fa-cart-plus mr-2"></i> Adicionar Copo ao Pedido
+                                </button>
+                            </form>
                         </div>
-                        
-                        <!-- Endereço -->
-                        <div>
-                            <label for="address" class="block text-xl font-semibold mb-3 text-yellow-300">
-                                <i class="fas fa-map-marker-alt mr-2"></i>Rua e Número:
-                            </label>
-                            <textarea id="address" name="address" rows="3" class="form-input w-full" placeholder="Rua, número e complemento" required></textarea>
-                        </div>
-
-                        <!-- Ponto de Referência -->
-                        <div>
-                            <label for="reference-point" class="block text-xl font-semibold mb-3 text-yellow-300">
-                                <i class="fas fa-landmark mr-2"></i>Ponto de Referência:
-                            </label>
-                            <textarea id="reference-point" name="reference-point" rows="2" class="form-input w-full" placeholder="Ex: Em frente à praça, ao lado do mercado..."></textarea>
-                        </div>
-
-                        <!-- Tamanho -->
-                        <div>
-                            <label for="size" class="block text-xl font-semibold mb-3 text-yellow-300">
-                                <i class="fas fa-shopping-basket mr-2"></i>Selecione o Tamanho:
-                            </label>
-                            <select id="size" name="size" class="form-input w-full" required>
-                                <option value="" disabled selected>Escolha uma opção</option>
-                                <option value="Mini">Mini (330ml) - R$ 13,99</option>
-                                <option value="Médio">Médio (400ml) - R$ 16,00</option>
-                                <option value="Grande">Grande (550ml) - R$ 21,99</option>
-                                <option value="Gigante">Gigante (770ml) - R$ 24,99</option>
-                            </select>
-                        </div>
-                        
-                        <!-- Acompanhamentos -->
-                        <div>
-                            <label class="block text-xl font-semibold mb-4 text-yellow-300">
-                                <i class="fas fa-plus-circle mr-2"></i>Escolha os Acompanhamentos:
-                            </label>
-                            <p id="topping-limit-info" class="text-sm italic text-yellow-200 mb-4">Selecione até 3 acompanhamentos.</p>
-                            <div class="grid grid-cols-2 gap-3 text-sm md:text-base">
-                                <!-- Lista de acompanhamentos com estilo aprimorado -->
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Aveia" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Aveia</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Amendoim com chocolate" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Amendoim com chocolate</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Amendoim granulado" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Amendoim granulado</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Choco ball" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Choco ball</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Confeito Colorido" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Confeito Colorido</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Flocos de arroz" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Flocos de arroz</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Farinha de Castanha de Caju" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Farinha de Castanha de Caju</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Farinha Láctea" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Farinha Láctea</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Granola" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Granola</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Granulado Chocolate" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Granulado Chocolate</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Leite" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Leite</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Ovomaltine" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Ovomaltine</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Paçoca" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Paçoca</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Jujuba" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Jujuba</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Kitkat" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Kitkat</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="M&M" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>M&M</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Negresco" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Negresco</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
-                                    <input type="checkbox" name="topping" value="Sucrilhos" class="rounded text-yellow-500 focus:ring-yellow-300">
-                                    <span>Sucrilhos</span>
-                                </label>
+                    </div>
+                    
+                    <!-- Coluna 2: Carrinho e Total -->
+                    <div class="lg:col-span-2">
+                        <div class="glass-card-dark p-8 rounded-3xl shadow-2xl space-y-8">
+                            
+                            <!-- Carrinho (Lista de Itens) -->
+                            <div>
+                                <h3 class="text-3xl font-bold text-yellow-300 mb-6 border-b pb-4 border-white/20 flex items-center">
+                                    <i class="fas fa-shopping-cart mr-3"></i> 2. Resumo do Pedido (Carrinho)
+                                </h3>
+                                <div id="cart-items" class="space-y-4 max-h-96 overflow-y-auto pr-2">
+                                    <!-- Itens do carrinho serão inseridos aqui -->
+                                    <p class="text-white/70 italic text-lg" id="empty-cart-message">Seu carrinho está vazio. Adicione o primeiro copo!</p>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <!-- Comentários Adicionais -->
-                        <div>
-                            <label for="comments" class="block text-xl font-semibold mb-3 text-yellow-300">
-                                <i class="fas fa-comment mr-2"></i>Observações Adicionais:
-                            </label>
-                            <textarea id="comments" name="comments" rows="3" class="form-input w-full" placeholder="Alguma observação especial sobre seu pedido?"></textarea>
-                        </div>
-                        
-                        <!-- Resumo de Preços (NOVO) -->
-                        <div id="price-summary" class="glass-card-dark p-6 rounded-2xl text-center hidden">
-                            <p class="text-2xl font-bold text-yellow-300 mb-2">Resumo do Pedido</p>
-                            <p class="text-white/90 text-lg">Açaí (<span id="summary-size"></span>): <span id="summary-acai-price" class="font-semibold">R$ 0,00</span></p>
-                            <p class="text-white/90 text-lg mb-3 border-b border-white/20 pb-2">Taxa de Entrega (<span id="summary-neighborhood"></span>): <span id="summary-delivery-fee" class="font-semibold">R$ 0,00</span></p>
-                            <p class="text-4xl font-extrabold hero-title">TOTAL: <span id="summary-total">R$ 0,00</span></p>
-                        </div>
 
-                        <!-- Botão de Envio Aprimorado -->
-                        <button type="submit" class="btn-primary w-full text-xl py-4">
-                            <i class="fab fa-whatsapp mr-3"></i>
-                            Enviar Pedido via WhatsApp
-                        </button>
-                    </form>
+                            <!-- Totalização (Subtotal + Taxa) -->
+                            <div class="pt-6 border-t border-white/20">
+                                <p class="text-xl font-semibold text-white mb-2">Subtotal dos Açaís: <span id="cart-subtotal" class="font-extrabold text-yellow-300 text-2xl">R$ 0,00</span></p>
+                                <p class="text-xl font-semibold text-white mb-4">Taxa de Entrega: <span id="cart-delivery-fee" class="font-extrabold text-yellow-300 text-2xl">R$ 0,00</span> (<span id="cart-neighborhood-name">Selecione o Bairro</span>)</p>
+                                <p class="text-5xl font-extrabold hero-title">TOTAL: <span id="cart-total">R$ 0,00</span></p>
+                            </div>
+                            
+                            <!-- Botão Finalizar Pedido (Ativado após adicionar itens) -->
+                            <button id="finalize-order-btn" class="btn-primary w-full text-2xl py-4 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                <i class="fab fa-whatsapp mr-3"></i> 3. Inserir Dados e Finalizar
+                            </button>
+                            
+                            <!-- Mensagem de erro/sucesso -->
+                            <div id="message-box" class="hidden p-4 rounded-xl bg-red-800 text-white/90 text-center font-medium"></div>
+
+                            <!-- 3. Dados de Entrega (Aparece ao Finalizar) -->
+                            <div id="delivery-details-section" class="pt-6 border-t border-white/20 hidden space-y-6">
+                                <h3 class="text-3xl font-bold text-yellow-300 mb-6 flex items-center">
+                                    <i class="fas fa-map-marked-alt mr-3"></i> 3. Dados de Entrega e Pagamento
+                                </h3>
+                                <form id="delivery-form" class="space-y-6">
+                                     <!-- Nome -->
+                                    <div>
+                                        <label for="delivery-name" class="block text-xl font-semibold mb-3 text-yellow-300">Nome Completo:</label>
+                                        <input type="text" id="delivery-name" name="name" class="form-input w-full" placeholder="Seu nome completo" required>
+                                    </div>
+                                    
+                                    <!-- Telefone -->
+                                    <div>
+                                        <label for="delivery-phone" class="block text-xl font-semibold mb-3 text-yellow-300">Telefone (DDD + Número):</label>
+                                        <input type="tel" id="delivery-phone" name="phone" class="form-input w-full" placeholder="(91) 99999-9999" required>
+                                    </div>
+
+                                    <!-- Bairro -->
+                                    <div>
+                                        <label for="neighborhood" class="block text-xl font-semibold mb-3 text-yellow-300">Bairro/Distrito (Taxa de Entrega):</label>
+                                        <select id="neighborhood" name="neighborhood" class="form-input w-full" required>
+                                            <option value="" disabled selected>Selecione seu bairro (para calcular a entrega)</option>
+                                            <!-- Opções preenchidas via JavaScript -->
+                                        </select>
+                                    </div>
+                                    
+                                    <!-- Endereço -->
+                                    <div>
+                                        <label for="delivery-address" class="block text-xl font-semibold mb-3 text-yellow-300">Rua e Número:</label>
+                                        <textarea id="delivery-address" name="address" rows="3" class="form-input w-full" placeholder="Ex: Rua Barão do Rio Branco, 123, Casa A" required></textarea>
+                                    </div>
+
+                                    <!-- Ponto de Referência -->
+                                    <div>
+                                        <label for="reference-point" class="block text-xl font-semibold mb-3 text-yellow-300">Ponto de Referência (Opcional):</label>
+                                        <textarea id="reference-point" name="reference-point" rows="2" class="form-input w-full" placeholder="Ex: Em frente à praça, ao lado do mercado..."></textarea>
+                                    </div>
+
+                                    <!-- FORMA DE PAGAMENTO -->
+                                    <div class="pt-4">
+                                        <label class="block text-xl font-semibold mb-3 text-yellow-300 border-t pt-4 border-white/20">
+                                            <i class="fas fa-wallet mr-2"></i> Forma de Pagamento:
+                                        </label>
+                                        <div class="space-y-3 glass-card-dark p-4 rounded-xl">
+                                            
+                                            <label class="flex items-center space-x-3 text-lg p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                                <input type="radio" name="paymentMethod" value="PIX" class="payment-radio rounded-full text-yellow-500 focus:ring-yellow-300" required>
+                                                <span><i class="fas fa-qrcode mr-2 text-yellow-300"></i> PIX</span>
+                                            </label>
+                                            
+                                            <label class="flex items-center space-x-3 text-lg p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                                <input type="radio" name="paymentMethod" value="Cartão de Débito" class="payment-radio rounded-full text-yellow-500 focus:ring-yellow-300">
+                                                <span><i class="fas fa-credit-card mr-2 text-red-400"></i> Cartão de Débito</span>
+                                            </label>
+                                            
+                                            <label class="flex items-center space-x-3 text-lg p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                                <input type="radio" name="paymentMethod" value="Cartão de Crédito" class="payment-radio rounded-full text-yellow-500 focus:ring-yellow-300">
+                                                <span><i class="fas fa-credit-card mr-2 text-blue-400"></i> Cartão de Crédito</span>
+                                            </label>
+                                            
+                                            <label class="flex items-center space-x-3 text-lg p-2 rounded-lg hover:bg-white/10 transition-all cursor-pointer">
+                                                <input type="radio" name="paymentMethod" value="Dinheiro" id="payment-cash" class="payment-radio rounded-full text-yellow-500 focus:ring-yellow-300">
+                                                <span><i class="fas fa-money-bill-wave mr-2 text-green-400"></i> Dinheiro</span>
+                                            </label>
+                                            
+                                            <!-- Input Troco (Condicional) -->
+                                            <div id="change-input-group" class="pl-8 pt-2 hidden">
+                                                <label for="cash-change" class="block text-white/80 font-medium mb-2">Troco para quanto? (Deixe em branco se for valor exato):</label>
+                                                <input type="number" step="0.01" id="cash-change" name="cashChange" class="form-input w-full" min="0" placeholder="Ex: 50.00">
+                                                <p class="text-xs italic text-white/60 mt-1">Insira o valor. O total do seu pedido será calculado automaticamente.</p>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn-primary w-full text-xl py-3 mt-4">
+                                        <i class="fab fa-whatsapp mr-3"></i> Enviar Pedido Completo via WhatsApp
+                                    </button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <!-- Seção de Contato Aprimorada -->
+            <!-- Seção de Contato (Mantida) -->
             <section id="contact-section" class="container mx-auto px-6 py-20 hidden-element" data-animate="fadeInUp">
                 <h2 class="text-5xl md:text-6xl font-bold text-center mb-16 hero-title uppercase">Lojas e Contato</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
                     <!-- Loja Centro -->
                     <div class="glass-card p-8 rounded-3xl card-3d-hover text-center hidden-element" data-animate="bounceIn" data-delay="100">
-                        <div class="text-5xl mb-6">
-                            <i class="fas fa-store text-yellow-400"></i>
-                        </div>
+                        <div class="text-5xl mb-6"><i class="fas fa-store text-yellow-400"></i></div>
                         <h3 class="text-2xl font-bold text-yellow-300 mb-4">Loja Centro</h3>
                         <p class="text-white/80 mb-4 leading-relaxed">
                             <i class="fas fa-map-marker-alt mr-2"></i>
@@ -632,9 +582,7 @@
                     
                     <!-- Combi Praça -->
                     <div class="glass-card p-8 rounded-3xl card-3d-hover text-center hidden-element" data-animate="bounceIn" data-delay="200">
-                        <div class="text-5xl mb-6">
-                            <i class="fas fa-store text-yellow-400"></i>
-                        </div>
+                        <div class="text-5xl mb-6"><i class="fas fa-store text-yellow-400"></i></div>
                         <h3 class="text-2xl font-bold text-yellow-300 mb-4">kombi Praça</h3>
                         <p class="text-white/80 mb-4 leading-relaxed">
                             <i class="fas fa-map-marker-alt mr-2"></i>
@@ -667,7 +615,7 @@
             </section>
         </main>
 
-        <!-- Rodapé Aprimorado -->
+        <!-- Rodapé -->
         <footer class="glass-card-dark py-8 px-6 text-center">
             <div class="container mx-auto">
                 <p class="text-white/80 mb-4">
@@ -682,7 +630,7 @@
 
     <!-- JavaScript Aprimorado -->
     <script>
-        // --- DADOS E VARIÁVEIS DE PREÇOS (COM NOVAS TAXAS DE ENTREGA) ---
+        // --- DADOS E VARIÁVEIS DE PREÇOS ---
         const ACAl_PRICES = {
             'Mini': 13.99,
             'Médio': 16.00,
@@ -692,204 +640,194 @@
 
         const DELIVERY_FEES = {
             // LISTA DE BAIRROS E TAXAS ATUALIZADA (Benevides/PA)
-            'Agrinesp': 15.00,
-            'Alianza Park': 14.00,
-            'B. Das Flores': 6.00,
-            'B. das Flores (Cond. Amazon Flora)': 7.00,
-            'Begozão': 5.00,
-            'Belo Jardim 2': 6.00,
-            'Belo Jardim I': 6.00,
-            'Bituba': 20.00,
-            'Cajueiro': 15.00,
-            'Campestre': 15.00,
-            'Canutama': 14.00,
-            'Canutama 2': 14.00,
-            'CD Magazine Luiza': 15.00,
-            'Centro': 5.00,
-            'Centro Cohab': 6.00,
-            'Chácara Mosqueirense': 15.00,
-            'Cohab Dorote Stang': 8.00,
-            'Colher de Pau': 15.00,
-            'Concessionária DAF': 8.00,
-            'Cond. em frente a Jacauna': 15.00,
-            'Condomínio Jardins Marselha': 15.00,
-            'Condomínio Mariápolis': 6.00,
-            'Coopercargo': 15.00,
-            'Cupuaçu': 20.00,
-            'Duque de Caxias': 6.00,
-            'Empresa BRF': 15.00,
-            'Empresa Colina': 15.00,
-            'Empresa DUNORTE': 15.00,
-            'Empresa Heineken': 15.00,
-            'Empresa LOG': 15.00,
-            'Empresa Mateus': 10.00,
-            'Empresa Splash': 15.00,
-            'Faama': 15.00,
-            'Igarapé do Gelo': 8.00,
-            'Independente': 6.00,
-            'Independente (Guerra)': 6.00,
-            'Itacolomi': 7.00,
-            'Itaporã': 6.00,
-            'Liberdade': 6.00,
-            'Luiz Gonzaga': 14.00,
-            'Madre Tereza': 6.00,
-            'Maguari': 6.00,
-            'Marrocos': 10.00,
-            'Médice': 6.00,
-            'N. Senhora do Carmo': 6.00,
-            'Natura': 15.00,
-            'Neópolis': 10.00,
-            'Palavra da Vida': 6.00,
-            'Paricatuba': 15.00,
-            'Park Alvorada': 14.00,
-            'Park Norte Belém': 15.00,
-            'Posto Ale BR': 15.00,
-            'Posto de Gasolina Iccar': 15.00,
-            'Posto Marajó': 10.00,
-            'Posto Petrobras': 10.00,
-            'Santa Rosa': 6.00,
-            'Santos Dumont': 6.00,
-            'Sítio Falcão': 15.00,
-            'Super Frio': 15.00,
-            'Terceira Travessa': 15.00,
-            'Travessa Girassol': 15.00,
-            'Volante de Ouro': 20.00,
-            // 'Outras' usa 999.00 como flag para indicar que a taxa deve ser consultada/variável (R$ 5,00 a R$ 20,00)
-            'Outras': 999.00 
+            'Agrinesp': 15.00, 'Alianza Park': 14.00, 'B. Das Flores': 6.00, 'B. das Flores (Cond. Amazon Flora)': 7.00, 'Begozão': 5.00,
+            'Belo Jardim 2': 6.00, 'Belo Jardim I': 6.00, 'Bituba': 20.00, 'Cajueiro': 15.00, 'Campestre': 15.00,
+            'Canutama': 14.00, 'Canutama 2': 14.00, 'CD Magazine Luiza': 15.00, 'Centro': 5.00, 'Centro Cohab': 6.00,
+            'Chácara Mosqueirense': 15.00, 'Cohab Dorote Stang': 8.00, 'Colher de Pau': 15.00, 'Concessionária DAF': 8.00, 'Cond. em frente a Jacauna': 15.00,
+            'Condomínio Jardins Marselha': 15.00, 'Condomínio Mariápolis': 6.00, 'Coopercargo': 15.00, 'Cupuaçu': 20.00, 'Duque de Caxias': 6.00,
+            'Empresa BRF': 15.00, 'Empresa Colina': 15.00, 'Empresa DUNORTE': 15.00, 'Empresa Heineken': 15.00, 'Empresa LOG': 15.00,
+            'Empresa Mateus': 10.00, 'Empresa Splash': 15.00, 'Faama': 15.00, 'Igarapé do Gelo': 8.00, 'Independente': 6.00,
+            'Independente (Guerra)': 6.00, 'Itacolomi': 7.00, 'Itaporã': 6.00, 'Liberdade': 6.00, 'Luiz Gonzaga': 14.00,
+            'Madre Tereza': 6.00, 'Maguari': 6.00, 'Marrocos': 10.00, 'Médice': 6.00, 'N. Senhora do Carmo': 6.00,
+            'Natura': 15.00, 'Neópolis': 10.00, 'Palavra da Vida': 6.00, 'Paricatuba': 15.00, 'Park Alvorada': 14.00,
+            'Park Norte Belém': 15.00, 'Posto Ale BR': 15.00, 'Posto de Gasolina Iccar': 15.00, 'Posto Marajó': 10.00,
+            'Posto Petrobras': 10.00, 'Santa Rosa': 6.00, 'Santos Dumont': 6.00, 'Sítio Falcão': 15.00, 'Super Frio': 15.00,
+            'Terceira Travessa': 15.00, 'Travessa Girassol': 15.00, 'Volante de Ouro': 20.00,
+            'Outras': 999.00 // Flag para indicar que a taxa deve ser consultada/variável
         };
         // ----------------------------------------------------
 
-        // Referências DOM atualizadas
-        const orderForm = document.getElementById('order-form');
-        const toppings = document.querySelectorAll('input[name="topping"]');
-        const toppingLimitInfo = document.getElementById('topping-limit-info');
+        // --- VARIÁVEIS GLOBAIS DE ESTADO ---
+        let orderCart = []; // Array que armazena todos os copos adicionados
+        
+        // --- REFERÊNCIAS DOM ---
+        const cupForm = document.getElementById('cup-form');
         const sizeSelect = document.getElementById('size');
-        const neighborhoodSelect = document.getElementById('neighborhood'); // NOVO
-        const priceSummary = document.getElementById('price-summary'); // NOVO
-        const summarySize = document.getElementById('summary-size'); // NOVO
-        const summaryAcaiPrice = document.getElementById('summary-acai-price'); // NOVO
-        const summaryNeighborhood = document.getElementById('summary-neighborhood'); // NOVO
-        const summaryDeliveryFee = document.getElementById('summary-delivery-fee'); // NOVO
-        const summaryTotal = document.getElementById('summary-total'); // NOVO
-
-
-        // Alternar Menu Mobile Aprimorado
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        const quantityInput = document.getElementById('quantity');
+        const toppings = document.querySelectorAll('#cup-form input[name="topping"]');
+        const toppingLimitInfo = document.getElementById('topping-limit-info');
+        const commentsInput = document.getElementById('comments');
         
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            mobileMenu.style.animation = mobileMenu.classList.contains('hidden') ? 
-                'fadeOut 0.3s ease-out' : 'fadeIn 0.3s ease-out';
-        });
+        const cartItemsContainer = document.getElementById('cart-items');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const cartSubtotalElement = document.getElementById('cart-subtotal');
+        const cartDeliveryFeeElement = document.getElementById('cart-delivery-fee');
+        const cartNeighborhoodNameElement = document.getElementById('cart-neighborhood-name');
+        const cartTotalElement = document.getElementById('cart-total');
+        const finalizeOrderBtn = document.getElementById('finalize-order-btn');
+        const deliveryDetailsSection = document.getElementById('delivery-details-section');
+        const neighborhoodSelect = document.getElementById('neighborhood'); 
+        const deliveryForm = document.getElementById('delivery-form');
+        const messageBox = document.getElementById('message-box');
 
-        // Animações de Rolagem Aprimoradas
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Referências para Pagamento e Troco
+        const paymentMethods = document.querySelectorAll('.payment-radio');
+        const changeInputGroup = document.getElementById('change-input-group');
+        const cashChangeInput = document.getElementById('cash-change');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const element = entry.target;
-                    const animationType = element.dataset.animate;
-                    const delay = element.dataset.delay;
-                    
-                    if (delay) {
-                        element.style.animationDelay = `${delay}ms`;
-                    }
-                    
-                    element.classList.remove('hidden-element');
-                    element.classList.add(`animate-${animationType}`);
-                    
-                    observer.unobserve(element);
-                }
-            });
-        }, observerOptions);
 
-        // Observar todos os elementos com animações
-        document.querySelectorAll('.hidden-element').forEach(el => {
-            observer.observe(el);
-        });
+        const WHATSAPP_NUMBER = '5591985334021'; 
+
+        // --- FUNÇÕES DE UTILIDADE ---
+        function formatCurrency(value) {
+            // Garante que o valor seja tratado como um número antes da formatação
+            if (typeof value !== 'number' || isNaN(value)) return 'R$ 0,00';
+            return `R$ ${value.toFixed(2).replace('.', ',')}`;
+        }
         
-        // --- LÓGICA DE PREÇOS E TAXAS DE ENTREGA (NOVO) ---
+        function getToppingLimit(size) {
+            if (size === 'Grande' || size === 'Gigante') {
+                return 4;
+            }
+            if (size === 'Mini' || size === 'Médio') {
+                return 3;
+            }
+            return 0;
+        }
+
+        function showMessage(text, isError = false) {
+            messageBox.textContent = text;
+            messageBox.className = isError 
+                ? 'p-4 rounded-xl bg-red-800 text-white/90 text-center font-medium'
+                : 'p-4 rounded-xl bg-green-800 text-white/90 text-center font-medium';
+            messageBox.classList.remove('hidden');
+            setTimeout(() => {
+                messageBox.classList.add('hidden');
+            }, 5000);
+        }
+
+        // --- LÓGICA DE BAIRROS E TAXAS ---
         
-        // 1. Popula o Select de Bairros
         function populateNeighborhoods() {
             let html = '<option value="" disabled selected>Selecione seu bairro (para calcular a entrega)</option>';
-            for (const [neighborhood, fee] of Object.entries(DELIVERY_FEES).sort((a, b) => a[0].localeCompare(b[0]))) { // Ordena alfabeticamente
+            const sortedNeighborhoods = Object.entries(DELIVERY_FEES).sort((a, b) => a[0].localeCompare(b[0]));
+            
+            for (const [neighborhood, fee] of sortedNeighborhoods) {
                 let feeText;
-
-                if (neighborhood === 'Outras') {
-                    // Texto personalizado para a opção 'Outras'
+                if (neighborhood === 'Outras' || fee === 999.00) { 
                     feeText = '(R$ 5,00 a R$ 20,00 - Consultar)';
-                } else if (fee === 999.00) { 
-                    // Fallback para outros casos de consulta
-                    feeText = '(A Consultar)';
                 } else {
-                    // Taxa fixa normal
                     feeText = `(R$ ${fee.toFixed(2).replace('.', ',')})`;
                 }
-                
                 html += `<option value="${neighborhood}">${neighborhood} ${feeText}</option>`;
             }
             neighborhoodSelect.innerHTML = html;
         }
         
-        // Função para formatar moeda
-        function formatCurrency(value) {
-            return `R$ ${value.toFixed(2).replace('.', ',')}`;
-        }
-        
-        // Função para calcular e atualizar o resumo do pedido
-        function updateOrderSummary() {
-            const selectedSize = sizeSelect.value;
-            const selectedNeighborhood = neighborhoodSelect.value;
+        // --- LÓGICA DO CARRINHO ---
 
-            if (!selectedSize || !selectedNeighborhood || selectedNeighborhood === "") {
-                priceSummary.classList.add('hidden');
-                return;
+        function calculateCartTotal(selectedNeighborhood) {
+            let subtotal = 0;
+            orderCart.forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+
+            let deliveryFee = 0;
+            let deliveryText = "Selecione o Bairro";
+            let totalPrice = subtotal;
+
+            if (selectedNeighborhood) {
+                const fee = DELIVERY_FEES[selectedNeighborhood] || 0;
+                if (fee === 999.00) {
+                    deliveryText = 'A Consultar (R$ 5,00 a R$ 20,00)';
+                    deliveryFee = 0;
+                } else {
+                    deliveryFee = fee;
+                    deliveryText = formatCurrency(deliveryFee);
+                    totalPrice += deliveryFee;
+                }
+                cartNeighborhoodNameElement.textContent = selectedNeighborhood;
+            } else {
+                cartNeighborhoodNameElement.textContent = "Selecione o Bairro";
             }
 
-            const acaiPrice = ACAl_PRICES[selectedSize] || 0;
-            const deliveryFee = DELIVERY_FEES[selectedNeighborhood] || 0;
+            cartSubtotalElement.textContent = formatCurrency(subtotal);
+            cartDeliveryFeeElement.textContent = deliveryText;
+            cartTotalElement.textContent = formatCurrency(totalPrice);
+
+            // Habilita/Desabilita botão Finalizar
+            finalizeOrderBtn.disabled = orderCart.length === 0;
             
-            // Se a taxa for 999.00, é um caso especial de consulta
-            if (deliveryFee === 999.00) {
-                summarySize.textContent = selectedSize;
-                summaryAcaiPrice.textContent = formatCurrency(acaiPrice);
-                summaryNeighborhood.textContent = selectedNeighborhood;
-                summaryDeliveryFee.textContent = 'A Consultar';
-                summaryTotal.textContent = formatCurrency(acaiPrice); // O total não inclui a taxa de consulta
-                priceSummary.classList.remove('hidden');
-                return;
+            return totalPrice; // Retorna o total para uso na validação
+        }
+        
+        function updateOrderCartDisplay() {
+            if (orderCart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-white/70 italic text-lg" id="empty-cart-message">Seu carrinho está vazio. Adicione o primeiro copo!</p>';
+                deliveryDetailsSection.classList.add('hidden');
+            } else {
+                let html = '';
+                orderCart.forEach((item, index) => {
+                    // Prepara a lista de acompanhamentos (incluindo o Leite Condensado padrão)
+                    const toppingList = [...item.toppings, 'Leite Condensado (Padrão)'].join(', ');
+
+                    html += `
+                        <div class="glass-card p-4 rounded-xl flex justify-between items-center shadow-md animate-fade-in-up">
+                            <div class="flex-grow">
+                                <p class="text-lg font-bold text-yellow-300">
+                                    <i class="fas fa-mug-hot mr-2"></i> ${item.quantity}x Copo ${item.size}
+                                    <span class="text-white text-sm">(${formatCurrency(item.price)}/un)</span>
+                                </p>
+                                <p class="text-sm text-white/80 mt-1 pl-6">
+                                    <span class="font-semibold">Acompanhamentos:</span> ${toppingList}
+                                </p>
+                                ${item.comments ? `<p class="text-xs italic text-white/60 pl-6">Obs: ${item.comments}</p>` : ''}
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xl font-extrabold text-yellow-400">${formatCurrency(item.price * item.quantity)}</span>
+                                <button type="button" onclick="removeItemFromCart(${index})" class="text-red-400 hover:text-red-600 transition-colors p-2 rounded-full hover:bg-white/10" aria-label="Remover item">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                cartItemsContainer.innerHTML = html;
             }
             
-            const totalPrice = acaiPrice + deliveryFee;
-
-            summarySize.textContent = selectedSize;
-            summaryAcaiPrice.textContent = formatCurrency(acaiPrice);
-            summaryNeighborhood.textContent = formatCurrency(deliveryFee);
-            summaryDeliveryFee.textContent = formatCurrency(deliveryFee);
-            summaryTotal.textContent = formatCurrency(totalPrice);
-            
-            priceSummary.classList.remove('hidden');
+            // Recalcula total sempre que o carrinho é atualizado
+            calculateCartTotal(neighborhoodSelect.value);
+        }
+        
+        window.removeItemFromCart = function(index) {
+            orderCart.splice(index, 1);
+            updateOrderCartDisplay();
+            showMessage('Item removido do pedido.', true);
         }
 
-        // --- LÓGICA DE ACOMPANHAMENTOS E LIMITES ---
-        
+        // --- LÓGICA DE VALIDAÇÃO E ADICIONAR AO PEDIDO ---
+
         function updateToppingLimit() {
             const selectedSize = sizeSelect.value;
-            let maxToppings = 3;
+            const maxToppings = getToppingLimit(selectedSize);
+            const checkedToppings = document.querySelectorAll('#cup-form input[name="topping"]:checked');
             
-            if (selectedSize === 'Grande' || selectedSize === 'Gigante') {
-                maxToppings = 4;
+            if (!selectedSize) {
+                 toppingLimitInfo.textContent = 'Selecione o tamanho para definir o limite de acompanhamentos.';
+                 toppings.forEach(t => { t.disabled = true; t.parentElement.style.opacity = '0.5'; });
+                 return;
             }
-
-            const checkedToppings = document.querySelectorAll('input[name="topping"]:checked');
             
-            // Desabilitar/habilitar com base no limite máximo
             toppings.forEach(t => {
                 if (checkedToppings.length >= maxToppings && !t.checked) {
                     t.disabled = true;
@@ -900,145 +838,249 @@
                 }
             });
             
-            // Atualizar texto de informação
-            toppingLimitInfo.textContent = `${checkedToppings.length}/${maxToppings} acompanhamentos selecionados.`;
+            toppingLimitInfo.textContent = `Limite: ${checkedToppings.length}/${maxToppings} acompanhamentos (grátis).`;
         }
         
-        // Listener principal para Tamanho e Bairro (dispara cálculo de preços e limite de toppings)
-        sizeSelect.addEventListener('change', () => {
-            updateOrderSummary();
+        function handlePaymentMethodChange() {
+            const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value;
+            if (selectedMethod === 'Dinheiro') {
+                changeInputGroup.classList.remove('hidden');
+                // Adiciona a classe de animação para aparecer suavemente
+                changeInputGroup.classList.add('animate-fade-in-up');
+            } else {
+                changeInputGroup.classList.add('hidden');
+                changeInputGroup.classList.remove('animate-fade-in-up');
+                cashChangeInput.value = ''; // Limpa o valor se o campo for ocultado
+            }
+        }
+
+
+        cupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const selectedSize = sizeSelect.value;
+            const quantity = parseInt(quantityInput.value);
+            const selectedToppings = Array.from(document.querySelectorAll('#cup-form input[name="topping"]:checked')).map(t => t.value);
+            const comments = commentsInput.value.trim();
+            
+            const maxToppings = getToppingLimit(selectedSize);
+
+            if (selectedToppings.length > maxToppings) {
+                showMessage(`Erro: O copo ${selectedSize} permite no máximo ${maxToppings} acompanhamentos grátis. Por favor, remova ${selectedToppings.length - maxToppings} item(s).`, true);
+                return;
+            }
+
+            // Cria o objeto do novo item
+            const newItem = {
+                size: selectedSize,
+                quantity: quantity,
+                price: ACAl_PRICES[selectedSize],
+                toppings: selectedToppings,
+                comments: comments
+            };
+            
+            // Adiciona ao carrinho
+            orderCart.push(newItem);
+            
+            // Atualiza o display
+            updateOrderCartDisplay();
+            
+            // Limpa o formulário de montagem
+            cupForm.reset();
             updateToppingLimit();
+            showMessage(`Copo ${selectedSize} (${quantity}x) adicionado ao pedido!`);
+            
+            // Dispara confetes
+            confetti({
+                particleCount: 80,
+                spread: 70,
+                origin: { x: 0.3, y: 0.6 },
+                colors: ['#ffd700', '#ffffff', '#8e44ad']
+            });
         });
         
-        neighborhoodSelect.addEventListener('change', updateOrderSummary);
-
-        // Listener para acompanhamentos (dispara apenas a verificação de limite)
+        sizeSelect.addEventListener('change', updateToppingLimit);
         toppings.forEach(topping => {
             topping.addEventListener('change', updateToppingLimit);
         });
+        neighborhoodSelect.addEventListener('change', () => {
+             calculateCartTotal(neighborhoodSelect.value);
+        });
+        paymentMethods.forEach(radio => {
+            radio.addEventListener('change', handlePaymentMethodChange);
+        });
 
-        // --- MANIPULAÇÃO DO FORMULÁRIO (ENVIO WHATSAPP) ---
+
+        // --- LÓGICA DE FINALIZAÇÃO E ENVIO ---
         
-        orderForm.addEventListener('submit', function(e) {
+        finalizeOrderBtn.addEventListener('click', () => {
+            if (orderCart.length === 0) {
+                showMessage('O carrinho está vazio. Adicione pelo menos um copo para finalizar.', true);
+                return;
+            }
+            // Exibe a seção de dados de entrega e rola até ela
+            deliveryDetailsSection.classList.remove('hidden');
+            deliveryDetailsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            showMessage('Quase lá! Preencha seus dados e escolha o pagamento.');
+        });
+        
+        deliveryForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Acionar confetes
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#ffd700', '#ffffff', '#8e44ad']
-            });
-            
-            // Obter dados do formulário
+            // 1. Coleta dados de entrega
             const formData = new FormData(this);
             const name = formData.get('name');
             const phone = formData.get('phone');
-            const neighborhood = formData.get('neighborhood'); // NOVO
+            const neighborhood = formData.get('neighborhood'); 
             const address = formData.get('address');
             const referencePoint = formData.get('reference-point');
-            const size = formData.get('size');
-            const selectedToppings = formData.getAll('topping');
-            const comments = formData.get('comments');
+            const paymentMethod = formData.get('paymentMethod');
+            let cashChangeInputVal = formData.get('cashChange'); // String do input
 
-            // CÁLCULO DOS PREÇOS
-            const acaiPrice = ACAl_PRICES[size] || 0;
-            const deliveryFee = DELIVERY_FEES[neighborhood] || 0;
-            const totalPrice = acaiPrice + (deliveryFee === 999.00 ? 0 : deliveryFee);
+            // 2. Cálculo dos totais (inclui taxa de entrega)
+            let subtotal = 0;
+            orderCart.forEach(item => { subtotal += item.price * item.quantity; });
             
-            // Criar mensagem do WhatsApp
-            let message = ` *PEDIDO MISTER AÇAÍTERIA* \n\n`;
-            message += `👤 *Nome:* ${name}\n`;
+            const deliveryFeeValue = DELIVERY_FEES[neighborhood] || 0;
+            const isConsultFee = deliveryFeeValue === 999.00;
+            const deliveryFee = isConsultFee ? 0 : deliveryFeeValue;
+            const totalPrice = subtotal + deliveryFee; // TOTAL DO PEDIDO PARA VALIDAÇÃO
+
+            // 2.1. Validação do Troco (se Dinheiro foi selecionado)
+            let trocoPara = 'Valor Exato / PIX / Cartão';
+            
+            if (paymentMethod === 'Dinheiro') {
+                if (cashChangeInputVal && cashChangeInputVal.trim() !== '') {
+                    // Substitui vírgula por ponto para parsear corretamente
+                    const cashChange = parseFloat(cashChangeInputVal.replace(',', '.'));
+                    
+                    if (isNaN(cashChange) || cashChange <= totalPrice) {
+                        showMessage(`Erro: O valor do troco (R$ ${cashChangeInputVal.replace('.', ',')}) deve ser maior que o Total Final (R$ ${totalPrice.toFixed(2).replace('.', ',')}).`, true);
+                        return; // Impede o envio
+                    }
+                    trocoPara = formatCurrency(cashChange);
+                } else {
+                    trocoPara = 'Não Precisa (Valor Exato)';
+                }
+            }
+
+
+            // 3. Monta a mensagem do WhatsApp (DETALHADO)
+            let message = `🍇 *PEDIDO FINALIZADO MISTER AÇAÍTERIA* 🍇\n\n`;
+            
+            // DADOS DO CLIENTE
+            message += `👤 *Cliente:* ${name}\n`;
             message += `📱 *Telefone:* ${phone}\n`;
+            
+            // DADOS DE ENTREGA
+            message += `\n*ENTREGA*\n`;
             message += `📍 *Bairro:* ${neighborhood}\n`;
             message += `🗺️ *Endereço:* ${address}\n`; 
-
             if (referencePoint) {
-                message += `📌 *Ponto de Referência:* ${referencePoint}\n`;
+                message += `📌 *Referência:* ${referencePoint}\n`;
             }
             
-            message += `\n--- *DETALHES DO PEDIDO* ---\n`;
-            message += `🥤 *Tamanho:* ${size}\n`;
-            
-            if (selectedToppings.length > 0) {
-                message += `🍓 *Acompanhamentos (com Leite Condensado padrão):*\n`;
-                selectedToppings.forEach(topping => {
-                    message += `• ${topping}\n`;
-                });
-            } else {
-                message += `🍓 *Acompanhamentos (com Leite Condensado padrão):*\n`;
-            }
-            
-            // LEITE CONDENSADO INCLUSO AQUI (PADRÃO)
-            message += `• Leite Condensado (PADRÃO)\n`;
-            
-            if (comments) {
-                message += `💬 *Observações:* ${comments}\n`;
-            }
+            // ITENS DO PEDIDO
+            message += `\n--- *ITENS DO PEDIDO* (${orderCart.length} tipo(s) de copo) ---\n`;
+            orderCart.forEach((item, index) => {
+                const toppingList = [...item.toppings, 'Leite Condensado (Padrão)'].join(', ');
+                message += `\n*${item.quantity}x Copo ${item.size}* (R$ ${item.price.toFixed(2).replace('.', ',')}/un) = *R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}*\n`;
+                message += `• Acompanhamentos: ${toppingList}\n`;
+                if (item.comments) {
+                    message += `• Obs. do Copo: ${item.comments}\n`;
+                }
+            });
 
-            message += `\n--- *VALORES* ---\n`;
-            message += `💸 *Valor do Açaí:* R$ ${acaiPrice.toFixed(2).replace('.', ',')}\n`;
+            // RESUMO FINANCEIRO
+            message += `\n--- *RESUMO FINANCEIRO* ---\n`;
+            message += `💸 *Subtotal Açaís:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
             
-            // Lógica para taxa de entrega
-            if (deliveryFee === 999.00) {
-                message += `🚚 *Taxa de Entrega:* R$ 5,00 a R$ 20,00 - A CONSULTAR\n`;
-                message += `💰 *TOTAL (Açaí):* R$ ${acaiPrice.toFixed(2).replace('.', ',')}\n`;
+            if (isConsultFee) {
+                message += `🏍️ *Taxa de Entrega:* R$ 5,00 a R$ 20,00 - A CONSULTAR\n`;
+                message += `💰 *TOTAL (Açaí):* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
                 message += `🚨 *Atenção:* O valor total com a taxa de entrega será confirmado pelo WhatsApp.`;
             } else {
-                message += `🚚 *Taxa de Entrega:* R$ ${deliveryFee.toFixed(2).replace('.', ',')}\n`;
+                message += `🏍️ *Taxa de Entrega:* R$ ${deliveryFee.toFixed(2).replace('.', ',')}\n`;
                 message += `💰 *TOTAL FINAL:* R$ ${totalPrice.toFixed(2).replace('.', ',')}\n`;
             }
 
-            message += `\n✨ Obrigado por escolher a Mister Açaíteria! ✨`;
-            
-            // Codificar mensagem para WhatsApp
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappNumber = '5591985334021'; // Número da loja
-            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-            
-            // Open WhatsApp
-            window.open(whatsappURL, '_blank');
-        });
+            // PAGAMENTO
+            message += `\n*PAGAMENTO*\n`;
+            message += `💳 *Forma de Pgto:* ${paymentMethod}\n`;
 
-        // Enhanced smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+            if (paymentMethod === 'Dinheiro') {
+                message += `💵 *Troco para:* ${trocoPara}\n`;
+            }
+
+            message += `\n✨ Seu pedido será processado rapidamente. Obrigado! ✨`;
+            
+            // 4. Envio
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            
+            window.open(whatsappURL, '_blank');
+            
+            // Feedback e limpeza (opcional)
+            showMessage('Pedido enviado! Aguarde o WhatsApp para confirmação.', false);
+            orderCart = []; // Limpa o carrinho
+            updateOrderCartDisplay();
+            deliveryForm.reset();
+            deliveryDetailsSection.classList.add('hidden');
+            handlePaymentMethodChange(); // Oculta o campo de troco
+
+            // Dispara confetes mais intensos
+            confetti({
+                particleCount: 200,
+                spread: 100,
+                origin: { y: 0.8 },
+                colors: ['#ffd700', '#ffffff', '#8e44ad', '#667eea']
             });
         });
 
-        // Enhanced header scroll effect
-        let lastScrollTop = 0;
-        const header = document.querySelector('header');
-        
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                header.style.transform = 'translateY(0)';
-            }
-            
-            lastScrollTop = scrollTop;
-        });
 
-        // Add loading animation and initialize data
+        // --- INICIALIZAÇÃO ---
         window.addEventListener('load', () => {
+            // Animação de carregamento (mantida)
             document.body.style.opacity = '0';
             document.body.style.transition = 'opacity 0.5s ease-in-out';
-            
             setTimeout(() => {
                 document.body.style.opacity = '1';
-                populateNeighborhoods(); // Preenche os bairros ao carregar
+                populateNeighborhoods(); // Preenche os bairros
+                updateToppingLimit(); // Configura limite inicial
+                updateOrderCartDisplay(); // Inicializa o carrinho vazio
+                handlePaymentMethodChange(); // Inicializa o campo de troco escondido
             }, 100);
+
+            // Menu Mobile (mantido)
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+            
+            // Animações de Rolagem (mantidas)
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const animationType = element.dataset.animate;
+                        const delay = element.dataset.delay;
+                        if (delay) { element.style.animationDelay = `${delay}ms`; }
+                        element.classList.remove('hidden-element');
+                        element.classList.add(`animate-${animationType}`);
+                        observer.unobserve(element);
+                    }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.hidden-element').forEach(el => { observer.observe(el); });
+            
+            // Smooth Scroll (mantido)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+                });
+            });
         });
     </script>
 </body>
